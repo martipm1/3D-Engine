@@ -6,7 +6,7 @@
 
 #include <cstdint>
 
-struct Mesh
+struct Mesh_str
 {
 	uint id_vertices;
 	uint num_vertices;
@@ -26,7 +26,7 @@ class ModuleMesh : public Module
 		bool Init();
 		bool CleanUp();
 
-		vector<Mesh> LoadMesh(const char* path);
+		vector<Mesh_str> LoadMesh(const char* path);
 
 
 };

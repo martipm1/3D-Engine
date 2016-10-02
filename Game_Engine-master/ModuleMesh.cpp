@@ -31,9 +31,9 @@ bool ModuleMesh::CleanUp()
 	//aiDetachAllLogStreams();
 }
 
-vector<Mesh> ModuleMesh::LoadMesh(const char* path)
+vector<Mesh_str> ModuleMesh::LoadMesh(const char* path)
 {
-	vector<Mesh> full_mesh;
+	vector<Mesh_str> full_mesh;
 
 	const aiScene* scene = aiImportFile(path, aiProcessPreset_TargetRealtime_MaxQuality);
 
@@ -42,11 +42,11 @@ vector<Mesh> ModuleMesh::LoadMesh(const char* path)
 		for (int i = 0; i < scene->mNumMeshes; i++)
 		{
 			aiMesh* mesh_to_load = scene->mMeshes[i];
-			Mesh mesh;
+			Mesh_str mesh;
 
 			//VERTICES
 			mesh.num_vertices = mesh_to_load->mNumVertices;
-			mesh.vertices = new float[mesh.num_vertices * 3];
+			mesh.vertices = new uint[mesh.num_vertices * 3];
 			memcpy(mesh.vertices, mesh_to_load->mVertices, sizeof(float)*mesh.num_vertices * 3);
 			
 			glGenBuffers(1, (GLuint*)&(mesh.id_vertices));
@@ -76,7 +76,7 @@ vector<Mesh> ModuleMesh::LoadMesh(const char* path)
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_indices);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * mesh.num_indices, mesh.indices, GL_STATIC_DRAW);
 
-			full_mesh.pushBack(mesh);
+			full_mesh.push_back(mesh);
 		}
 
 		aiReleaseImport(scene);
