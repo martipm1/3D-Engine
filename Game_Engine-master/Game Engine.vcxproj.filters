@@ -426,6 +426,9 @@
     <ClInclude Include="Assimp\include\version.h">
       <Filter>Sources\External\Assimp</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleMesh.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -598,6 +601,9 @@
     </ClCompile>
     <ClCompile Include="PerfTimer.cpp">
       <Filter>Sources\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleMesh.cpp">
+      <Filter>Sources\Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,9 @@
 #include "ModuleRenderer3D.h"
 #include "ModuleCamera3D.h"
 #include "ModuleGuiEditor.h"
+#include "ModuleMesh.h"
+
+using namespace std;
 
 class Application
 {
@@ -25,6 +28,7 @@ public:
 	ModuleRenderer3D* renderer3D;
 	ModuleCamera3D* camera;
 	ModuleGuiEditor* editor;
+	ModuleMesh* meshes;
 
 private:
 
