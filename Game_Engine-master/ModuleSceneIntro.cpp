@@ -16,6 +16,8 @@
 #pragma comment (lib, "Glew/libx86/glew32.lib") 
 //Geometry stuff, shouldn't be here
 
+using namespace std;
+
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {}
 
@@ -75,7 +77,7 @@ bool ModuleSceneIntro::Start()
 	glBindBuffer(GL_ARRAY_BUFFER, my_id);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(my_D_is_Tasty) * 3, &my_D_is_Tasty, GL_STATIC_DRAW);
 
-	fbx_test = App->meshes->LoadMesh("EVA01.fbx");
+	fbx_test = App->meshes->LoadMesh("warrior.fbx");
 
 	return ret;
 }
@@ -91,7 +93,7 @@ bool ModuleSceneIntro::CleanUp()
 // Update: draw background
 update_status ModuleSceneIntro::Update(float dt)
 {
-	Plane(0, 1, 0, 0).Render();
+	Plane(0, 0, 0, 0).Render();
 
 	//glBegin(GL_TRIANGLES);
 	//glVertex3f(0.f, 0.f, 5.f);

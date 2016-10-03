@@ -2,9 +2,6 @@
 #define __MODULE_MESH_H__
 
 #include "Module.h"
-#include "Globals.h"
-
-#include <cstdint>
 
 struct Mesh_str
 {
@@ -26,9 +23,8 @@ class ModuleMesh : public Module
 		bool Init();
 		bool CleanUp();
 
-		vector<Mesh_str> LoadMesh(const char* path);
-
-
+		std::vector<Mesh_str> LoadMesh(const char* path);
 };
+
 #endif __MODULE_MESH_H__
 

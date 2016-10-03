@@ -1,17 +1,21 @@
-#include "ModuleMesh.h"
+#include "Globals.h"
 #include "Application.h"
+#include "ModuleMesh.h"
+
+#include "Assimp\include\cimport.h"
+#include "Assimp\include\scene.h"
+#include "Assimp\include\postprocess.h"
+#include "Assimp\include\cfileio.h"
 
 #include "Glew\include\glew.h"
-#include <gl\GL.h>
 
-#include "Assimp/include/cimport.h"
-#include "Assimp/include/scene.h"
-#include "Assimp/include/postprocess.h"
-#include "Assimp/include/cfileio.h"
 #pragma comment (lib, "Assimp/libx86/assimp.lib")
+#pragma comment (lib, "Glew/libx86/glew32.lib")
+
+using namespace std;
 
 
-ModuleMesh::ModuleMesh(Application* app, bool start_enabled = true) : Module(app, start_enabled)
+ModuleMesh::ModuleMesh(Application* app, bool start_enabled) : Module(app, start_enabled)
 {}
 
 ModuleMesh::~ModuleMesh()
@@ -23,12 +27,16 @@ bool ModuleMesh::Init()
 	//struct aiLogStrem stream;
 	//stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullprt);
 	//aiAttachLogStream(&stream);
+
+	return true;
 }
 
 bool ModuleMesh::CleanUp()
 {
 	//Stop debbuging through the console
 	//aiDetachAllLogStreams();
+
+	return true;
 }
 
 vector<Mesh_str> ModuleMesh::LoadMesh(const char* path)

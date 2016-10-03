@@ -15,8 +15,6 @@
 #include "ModuleGuiEditor.h"
 #include "ModuleMesh.h"
 
-using namespace std;
-
 class Application
 {
 public:
