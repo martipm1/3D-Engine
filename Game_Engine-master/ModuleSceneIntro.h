@@ -23,6 +23,5 @@ public:
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
 	uint my_id = 0;
-	//RNG rand_gen;
 	std::vector<Mesh_str> fbx_test;
 };
