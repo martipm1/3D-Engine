@@ -3,7 +3,6 @@
 
 GameObjectManager::GameObjectManager(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-	root = nullptr;
 }
 
 GameObjectManager::~GameObjectManager()
@@ -11,6 +10,8 @@ GameObjectManager::~GameObjectManager()
 
 bool GameObjectManager::Start()
 {
+	root = nullptr;
+
 	return true;
 }
 

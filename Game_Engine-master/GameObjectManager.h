@@ -4,8 +4,6 @@
 #include "Module.h"
 #include "GameObject.h"
 
-#include <string>
-
 class GameObjectManager: public Module
 {
 public:

@@ -1,7 +1,5 @@
-#include "Globals.h"
 #include "Application.h"
 #include "ModuleMesh.h"
-#include "GameObjectManager.h"
 
 #include "Assimp\include\cimport.h"
 #include "Assimp\include\scene.h"

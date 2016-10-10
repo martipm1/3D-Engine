@@ -13,8 +13,8 @@
 #include "ModuleRenderer3D.h"
 #include "ModuleCamera3D.h"
 #include "ModuleGuiEditor.h"
-#include "ModuleMesh.h"
 #include "GameObjectManager.h"
+#include "ModuleMesh.h"
 
 class Application
 {
@@ -27,8 +27,8 @@ public:
 	ModuleRenderer3D* renderer3D;
 	ModuleCamera3D* camera;
 	ModuleGuiEditor* editor;
-	ModuleMesh* meshes;
 	GameObjectManager* go_manager;
+	ModuleMesh* meshes;
 
 private:
 

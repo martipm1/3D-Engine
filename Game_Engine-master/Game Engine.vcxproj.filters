@@ -629,9 +629,6 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>Sources\Modules\GameObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>Sources\Modules\GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>Sources\Modules\GameObjects</Filter>
     </ClCompile>
