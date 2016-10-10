@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleMesh.h"
+#include "GameObjectManager.h"
 
 #include "Assimp\include\cimport.h"
 #include "Assimp\include\scene.h"
@@ -47,6 +48,25 @@ vector<Mesh_str> ModuleMesh::LoadMesh(const char* path)
 
 	if (scene != nullptr && scene->HasMeshes())
 	{
+		//USE NODES TO ITERATE ALL THE SCENE
+		//if(scene->mRootNode->)
+		GameObject* object = App->go_manager->CreateGameObject("GameObject", nullptr);
+		//
+		////Getting the transformation
+		//aiVector3D translation;
+		//aiVector3D scaling;
+		//aiQuaternion rotation;
+		//
+		//scene->mRootNode->mTransformation.Decompose(scaling, rotation, translation);
+		//
+		//float3 pos(translation.x, translation.y, translation.z);
+		//float3 scale(scaling.x, scaling.y, scaling.z);
+		//Quat rot(rotation.x, rotation.y, rotation.z, rotation.w);
+		//
+		////Send everything to the GameObject
+		//object->AddComponent(c_transform, pos, scale, rot);
+
+		//Getting the mesh
 		for (int i = 0; i < scene->mNumMeshes; i++)
 		{
 			aiMesh* mesh_to_load = scene->mMeshes[i];
@@ -86,6 +106,8 @@ vector<Mesh_str> ModuleMesh::LoadMesh(const char* path)
 
 			full_mesh.push_back(mesh);
 		}
+		//Mesh complete! Send it to GameObject as a Mesh Component
+		object->AddComponent(c_mesh, full_mesh);
 
 		aiReleaseImport(scene);
 	}

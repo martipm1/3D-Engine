@@ -2,6 +2,8 @@
 #define __MODULE_MESH_H__
 
 #include "Module.h"
+#include "Globals.h"
+#include <vector>
 
 struct Mesh_str
 {

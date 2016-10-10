@@ -447,6 +447,9 @@
     <ClInclude Include="ComponentTransform.h">
       <Filter>Sources\Modules\GameObjects\Components</Filter>
     </ClInclude>
+    <ClInclude Include="ComponentMesh.h">
+      <Filter>Sources\Modules\GameObjects\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -631,6 +634,9 @@
     </ClCompile>
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>Sources\Modules\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentMesh.cpp">
+      <Filter>Sources\Modules\GameObjects\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

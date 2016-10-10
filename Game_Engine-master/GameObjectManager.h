@@ -1,12 +1,14 @@
 #ifndef __GAMEOBJECTMANAGER_H__
 #define __GAMEOBJECTMANAGER_H__
 
-#include "GameObject.h"
 #include "Module.h"
+#include "GameObject.h"
+
 #include <string>
 
 class GameObjectManager: public Module
 {
+public:
 	GameObjectManager(Application* app, bool start_enabled = true);
 	~GameObjectManager();
 
@@ -15,7 +17,7 @@ class GameObjectManager: public Module
 	bool CleanUp();
 
 	//Should recieve specific data to create the object*
-	GameObject* CreateGameObject(GameObject* parent = nullptr, std::string name);
+	GameObject* CreateGameObject(std::string name, GameObject* parent);
 	void DeleteGameObject(GameObject* object);
 
 	GameObject* root;

@@ -1,6 +1,8 @@
 #ifndef __COMPONENT_H__
 #define __COMPONENT_H__
 
+#include <string>
+
 enum component_type
 {
 	c_transform,
@@ -10,14 +12,23 @@ enum component_type
 
 class Component
 {
+public:
 	component_type type;
 	std::string name;
+	bool active;
 
-	//PATTERN
+	Component(component_type _type, std::string _name)
+	{
+		type = _type;
+		name = _name;
+	}
 
-	virtual void Enable();
-	virtual void Update();
-	virtual void Disable();
+	virtual void Enable()
+	{}
+	virtual void Update()
+	{}
+	virtual void Disable()
+	{}
 };
 
 #endif // __COMPONENT_H__

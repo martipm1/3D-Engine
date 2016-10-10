@@ -1,6 +1,7 @@
+#include "Application.h"
 #include "GameObjectManager.h"
 
-GameObjectManager::GameObjectManager(Application* app, bool start_enabled = true) : Module(app, start_enabled)
+GameObjectManager::GameObjectManager(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 	root = nullptr;
 }
@@ -9,27 +10,35 @@ GameObjectManager::~GameObjectManager()
 {}
 
 bool GameObjectManager::Start()
-{}
+{
+	return true;
+}
 
 update_status GameObjectManager::Update(float dt)
 {
 	if (root->active)
 		root->Update();
+
+	return UPDATE_CONTINUE;
 }
 
 bool GameObjectManager::CleanUp()
 {
-	delete[] root;
+	//delete[] root;
+	return true;
 }
 
-GameObject* GameObjectManager::CreateGameObject(GameObject* parent = nullptr, std::string name, info components...)
-{
-	GameObject* object = new GameObject(parent, name, info components);
+GameObject* GameObjectManager::CreateGameObject(std::string name, GameObject* parent = nullptr)
+{ 
+	GameObject* object = new GameObject(name, parent);
+
+	if (!root && parent == nullptr)
+		root = object;
 
 	return object;
 }
 
-void DeleteGameObject(GameObject* object)
+void GameObjectManager::DeleteGameObject(GameObject* object)
 {
-	object->Delete();
+	//object->Delete();
 }

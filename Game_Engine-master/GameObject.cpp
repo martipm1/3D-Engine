@@ -1,25 +1,20 @@
 #include "GameObject.h"
-#include "Component.h"
+#include "ComponentMesh.h"
 
-GameObject::GameObject(GameObject* _parent = nullptr, std::string _name, info _components)
+GameObject::GameObject(std::string _name, GameObject* _parent)
 {
 	parent = _parent;
+	if(parent)
+		parent->childs.push_back(this);
 	name = _name;
-
-	if (transform)
-		components.push_back(AddComponent(c_transform, info));
-	if (mesh)
-		components.push_back(AddComponent(c_mesh, info));
-	if (material)
-		components.push_back(AddComponent(c_material, info));
 }
 
 GameObject::~GameObject()
 {
-	delete parent;
-	delete components;
-	delete childs;
-	delete name;
+	//delete parent;
+	//delete components;
+	//delete childs;
+	//delete name;
 }
 
 void GameObject::Update()
@@ -40,23 +35,44 @@ GameObject* GameObject::GetParent()
 	return parent;
 }
 
-Component* GameObject::AddComponent(component_type type, info component)
+Component* GameObject::AddComponent(component_type type, std::vector<Mesh_str> _mesh)
 {
-	switch (type)
+	if (_mesh.size() > 0)
 	{
-	case c_transform:
-		ComponentTransform* transform = new ComponentTransform();
-		return transform;
+		ComponentMesh* mesh = new ComponentMesh(type, _mesh);
+		components.push_back(mesh);
 
-	case c_mesh:
-		ComponentMesh* mesh = new ComponentMesh();
 		return mesh;
-
-	case c_material:
-		ComponentMaterial* material = new ComponentMaterial();
-		return material;
 	}
 
+	//If never happens to get to this line, something went wrong!
+	return nullptr;
+}
+
+Component* GameObject::AddComponent(component_type type, int i)
+{
+	//if (_mesh)
+	//{
+	//	ComponentMesh* mesh = new ComponentMesh();
+	//	components.push_back(mesh);
+	//
+	//	return mesh;
+	//}
+	//
+	//If never happens to get to this line, something went wrong!
+	return nullptr;
+}
+
+Component* GameObject::AddComponent(component_type type, float y)
+{
+	//if (_mesh)
+	//{
+	//	ComponentMesh* mesh = new ComponentMesh();
+	//	components.push_back(mesh);
+	//
+	//	return mesh;
+	//}
+	//
 	//If never happens to get to this line, something went wrong!
 	return nullptr;
 }

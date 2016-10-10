@@ -1,19 +1,26 @@
 #ifndef __GAMEOBJECT_H__
 #define __GMAEOBJECT_H__
 
-#include "Globals.h"
 #include <vector>
+//#include "ModuleMesh.h"
 #include "Component.h"
+
+struct Mesh_str;
 
 class GameObject
 {
 	public:
-		GameObject(GameObject* parent = nullptr, std::string name, info components);
+		GameObject(std::string _name, GameObject* _parent = nullptr);
 		~GameObject();
 		void Update();
 		GameObject* GetParent();
-		Component* AddComponent(component_type type, info component);
-		Component* FindComponent(component_type type, info component);
+		//add Mesh component
+		Component* AddComponent(component_type type, std::vector<Mesh_str> mesh);
+		//add Transform component
+		Component* AddComponent(component_type type, int i);
+		//add Material component
+		Component* AddComponent(component_type type, float y);
+		Component* FindComponent(component_type type);
 	
 	public:
 		GameObject* parent;

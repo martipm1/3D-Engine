@@ -17,6 +17,7 @@ Application::Application()
 	camera = new ModuleCamera3D(this);
 	editor = new ModuleGuiEditor(this);
 	meshes = new ModuleMesh(this);
+	go_manager = new GameObjectManager(this);
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -34,6 +35,7 @@ Application::Application()
 	AddModule(scene_intro);
 	AddModule(editor);
 	AddModule(meshes);
+	AddModule(go_manager);
 }
 
 Application::~Application()

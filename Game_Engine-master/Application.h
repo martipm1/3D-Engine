@@ -14,6 +14,7 @@
 #include "ModuleCamera3D.h"
 #include "ModuleGuiEditor.h"
 #include "ModuleMesh.h"
+#include "GameObjectManager.h"
 
 class Application
 {
@@ -27,6 +28,7 @@ public:
 	ModuleCamera3D* camera;
 	ModuleGuiEditor* editor;
 	ModuleMesh* meshes;
+	GameObjectManager* go_manager;
 
 private:
 

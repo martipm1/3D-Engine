@@ -176,18 +176,18 @@ update_status ModuleSceneIntro::Update(float dt)
 	//glDrawArrays(GL_TRIANGLES, 0, 36 * 3);
 	//glDisableClientState(GL_VERTEX_ARRAY);
 
-	vector<Mesh_str>::iterator it = fbx_test.begin();
-
-	while (it != fbx_test.end())
-	{
-		glEnableClientState(GL_VERTEX_ARRAY);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, (*it).id_indices);
-		glVertexPointer(3, GL_FLOAT, 0, NULL);
-		glDrawElements(GL_TRIANGLES, (*it).num_indices, GL_UNSIGNED_INT, NULL);
-		glDisableClientState(GL_VERTEX_ARRAY);
-
-		it++;
-	}
+	//vector<Mesh_str>::iterator it = fbx_test.begin();
+	//
+	//while (it != fbx_test.end())
+	//{
+	//	glEnableClientState(GL_VERTEX_ARRAY);
+	//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, (*it).id_indices);
+	//	glVertexPointer(3, GL_FLOAT, 0, NULL);
+	//	glDrawElements(GL_TRIANGLES, (*it).num_indices, GL_UNSIGNED_INT, NULL);
+	//	glDisableClientState(GL_VERTEX_ARRAY);
+	//
+	//	it++;
+	//}
 
 	return UPDATE_CONTINUE;
 }
