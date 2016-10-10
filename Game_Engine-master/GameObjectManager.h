@@ -3,6 +3,7 @@
 
 #include "GameObject.h"
 #include "Module.h"
+#include <string>
 
 class GameObjectManager: public Module
 {
@@ -14,7 +15,7 @@ class GameObjectManager: public Module
 	bool CleanUp();
 
 	//Should recieve specific data to create the object*
-	GameObject* CreateGameObject(GameObject* parent = nullptr);
+	GameObject* CreateGameObject(GameObject* parent = nullptr, std::string name);
 	void DeleteGameObject(GameObject* object);
 
 	GameObject* root;

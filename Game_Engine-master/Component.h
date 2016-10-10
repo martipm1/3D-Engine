@@ -11,7 +11,8 @@ enum component_type
 class Component
 {
 	component_type type;
-	
+	std::string name;
+
 	//PATTERN
 
 	virtual void Enable();
