@@ -3,14 +3,14 @@
 
 #include "Component.h"
 #include <vector>
-#include "ModuleMesh.h"
+struct Mesh_str;
 
 class ComponentMesh : public Component
 {
 public:
-	std::vector<Mesh_str> mesh;
+	Mesh_str* mesh;
 
-	ComponentMesh(component_type type, std::vector<Mesh_str> _mesh);
+	ComponentMesh(component_type type, Mesh_str* _mesh);
 	~ComponentMesh();
 
 	void Enable();

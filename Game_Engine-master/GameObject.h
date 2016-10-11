@@ -2,10 +2,10 @@
 #define __GMAEOBJECT_H__
 
 #include <vector>
-//#include "ModuleMesh.h"
-#include "Component.h"
-
+class Component;
+class MeshComponent;
 struct Mesh_str;
+enum component_type;
 
 class GameObject
 {
@@ -15,7 +15,7 @@ class GameObject
 		void Update();
 		GameObject* GetParent();
 		//add Mesh component
-		Component* AddComponent(component_type type, std::vector<Mesh_str> mesh);
+		Component* AddComponent(component_type type, Mesh_str* mesh);
 		//add Transform component
 		Component* AddComponent(component_type type, int i);
 		//add Material component

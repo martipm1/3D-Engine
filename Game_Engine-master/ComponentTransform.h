@@ -2,7 +2,6 @@
 #define __COMPONENTTRANSFORM_H__
 
 #include "Component.h"
-#include "glmath.h"
 #include <vector>
 
 class ComponentTransform : public Component
@@ -13,7 +12,7 @@ class ComponentTransform : public Component
 
 	std::vector<float> pos;
 	std::vector<float> scale;
-	glQuaternion rotation;
+	//glQuaternion rotation;
 };
 
 #endif // !__COMPONENTTRANSFORM_H__

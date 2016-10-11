@@ -1,4 +1,5 @@
 #include "ComponentMesh.h"
+#include "ModuleMesh.h"
 //Geometry stuff, shouldn't be here ONLY TESTING!
 #include "Glew\include\glew.h"
 #include "SDL\include\SDL_opengl.h"
@@ -10,9 +11,10 @@
 #pragma comment (lib, "Glew/libx86/glew32.lib") 
 //Geometry stuff, shouldn't be here
 
-ComponentMesh::ComponentMesh(component_type type, std::vector<Mesh_str> _mesh) : Component(type, "Mesh")
+ComponentMesh::ComponentMesh(component_type type, Mesh_str* _mesh) : Component(type, "Mesh")
 {
 	mesh = _mesh;
+	active = true;
 }
 
 ComponentMesh::~ComponentMesh()
@@ -31,17 +33,11 @@ void ComponentMesh::Update()
 	if (active)
 	{
 		//Draw the geometry (mesh) :^D
-		std::vector<Mesh_str>::iterator it = mesh.begin();
-		while (it != mesh.end())
-		{
-			glEnableClientState(GL_VERTEX_ARRAY);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, (*it).id_indices);
-			glVertexPointer(3, GL_FLOAT, 0, NULL);
-			glDrawElements(GL_TRIANGLES, (*it).num_indices, GL_UNSIGNED_INT, NULL);
-			glDisableClientState(GL_VERTEX_ARRAY);
-
-			it++;
-		}
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
+		glVertexPointer(3, GL_FLOAT, 0, NULL);
+		glDrawElements(GL_TRIANGLES, mesh->num_indices, GL_UNSIGNED_INT, NULL);
+		glDisableClientState(GL_VERTEX_ARRAY);
 	}
 }
 

@@ -4,8 +4,6 @@
 #include "Globals.h"
 #include "RNG.h"
 
-#include <cstdint>
-
 struct PhysBody3D;
 class Cube;
 struct Mesh_str;
@@ -23,5 +21,4 @@ public:
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 
 	uint my_id = 0;
-	std::vector<Mesh_str> fbx_test;
 };

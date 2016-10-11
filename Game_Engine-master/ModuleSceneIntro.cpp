@@ -77,7 +77,7 @@ bool ModuleSceneIntro::Start()
 	glBindBuffer(GL_ARRAY_BUFFER, my_id);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(my_D_is_Tasty) * 3, &my_D_is_Tasty, GL_STATIC_DRAW);
 
-	fbx_test = App->meshes->LoadMesh("warrior.fbx");
+	App->meshes->LoadMesh("warrior.fbx");
 
 	return ret;
 }

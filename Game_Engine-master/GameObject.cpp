@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "Component.h"
 #include "ComponentMesh.h"
 
 GameObject::GameObject(std::string _name, GameObject* _parent)
@@ -35,9 +36,9 @@ GameObject* GameObject::GetParent()
 	return parent;
 }
 
-Component* GameObject::AddComponent(component_type type, std::vector<Mesh_str> _mesh)
+Component* GameObject::AddComponent(component_type type, Mesh_str* _mesh)
 {
-	if (_mesh.size() > 0)
+	if (_mesh)
 	{
 		ComponentMesh* mesh = new ComponentMesh(type, _mesh);
 		components.push_back(mesh);

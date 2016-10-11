@@ -13,8 +13,8 @@
 #include "ModuleRenderer3D.h"
 #include "ModuleCamera3D.h"
 #include "ModuleGuiEditor.h"
-#include "GameObjectManager.h"
 #include "ModuleMesh.h"
+#include "GameObjectManager.h"
 
 class Application
 {

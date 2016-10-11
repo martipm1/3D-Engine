@@ -17,11 +17,8 @@ public:
 	std::string name;
 	bool active;
 
-	Component(component_type _type, std::string _name)
-	{
-		type = _type;
-		name = _name;
-	}
+	Component(component_type _type, std::string _name) : type(_type), name(_name)
+	{}
 
 	virtual void Enable()
 	{}
@@ -31,5 +28,5 @@ public:
 	{}
 };
 
-#endif // __COMPONENT_H__
+#endif // !__COMPONENT_H__
 

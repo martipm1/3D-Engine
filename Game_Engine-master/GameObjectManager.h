@@ -2,7 +2,7 @@
 #define __GAMEOBJECTMANAGER_H__
 
 #include "Module.h"
-#include "GameObject.h"
+class GameObject;
 
 class GameObjectManager: public Module
 {
@@ -21,5 +21,5 @@ public:
 	GameObject* root;
 };
 
-#endif // ! __GAMEOBJECTMANAGER_H__
+#endif // !__GAMEOBJECTMANAGER_H__
 

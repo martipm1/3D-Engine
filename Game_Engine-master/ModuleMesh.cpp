@@ -1,5 +1,8 @@
 #include "Application.h"
 #include "ModuleMesh.h"
+#include "GameObject.h"
+#include "GameObjectManager.h"
+#include "Component.h"
 
 #include "Assimp\include\cimport.h"
 #include "Assimp\include\scene.h"
@@ -68,22 +71,22 @@ vector<Mesh_str> ModuleMesh::LoadMesh(const char* path)
 		for (int i = 0; i < scene->mNumMeshes; i++)
 		{
 			aiMesh* mesh_to_load = scene->mMeshes[i];
-			Mesh_str mesh;
+			Mesh_str* mesh = new Mesh_str();
 
 			//VERTICES
-			mesh.num_vertices = mesh_to_load->mNumVertices;
-			mesh.vertices = new uint[mesh.num_vertices * 3];
-			memcpy(mesh.vertices, mesh_to_load->mVertices, sizeof(float)*mesh.num_vertices * 3);
+			mesh->num_vertices = mesh_to_load->mNumVertices;
+			mesh->vertices = new uint[mesh->num_vertices * 3];
+			memcpy(mesh->vertices, mesh_to_load->mVertices, sizeof(float)*mesh->num_vertices * 3);
 			
-			glGenBuffers(1, (GLuint*)&(mesh.id_vertices));
-			glBindBuffer(GL_ARRAY_BUFFER, mesh.id_vertices);
-			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * mesh.num_vertices, mesh.vertices, GL_STATIC_DRAW);
+			glGenBuffers(1, (GLuint*)&(mesh->id_vertices));
+			glBindBuffer(GL_ARRAY_BUFFER, mesh->id_vertices);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * mesh->num_vertices, mesh->vertices, GL_STATIC_DRAW);
 
 			//INDICES
 			if (mesh_to_load->HasFaces())
 			{
-				mesh.num_indices = mesh_to_load->mNumFaces * 3;
-				mesh.indices = new uint[mesh.num_indices];
+				mesh->num_indices = mesh_to_load->mNumFaces * 3;
+				mesh->indices = new uint[mesh->num_indices];
 				for (uint j = 0; j < mesh_to_load->mNumFaces; j++)
 				{
 					if (mesh_to_load->mFaces[j].mNumIndices != 3)
@@ -92,20 +95,19 @@ vector<Mesh_str> ModuleMesh::LoadMesh(const char* path)
 					}
 					else
 					{
-						memcpy(&mesh.indices[j * 3], mesh_to_load->mFaces[j].mIndices, 3 * sizeof(uint));
+						memcpy(&mesh->indices[j * 3], mesh_to_load->mFaces[j].mIndices, 3 * sizeof(uint));
 					}
 						
 				}
 			}
 
-			glGenBuffers(1, (GLuint*)&(mesh.id_indices));
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_indices);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * mesh.num_indices, mesh.indices, GL_STATIC_DRAW);
+			glGenBuffers(1, (GLuint*)&(mesh->id_indices));
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * mesh->num_indices, mesh->indices, GL_STATIC_DRAW);
 
-			full_mesh.push_back(mesh);
+			object->AddComponent(c_mesh, mesh);
 		}
 		//Mesh complete! Send it to GameObject as a Mesh Component
-		object->AddComponent(c_mesh, full_mesh);
 
 		aiReleaseImport(scene);
 	}
