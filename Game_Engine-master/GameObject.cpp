@@ -1,12 +1,14 @@
 #include "GameObject.h"
 #include "Component.h"
 #include "ComponentMesh.h"
+#include "GameObjectManager.h"
 
 GameObject::GameObject(std::string _name, GameObject* _parent)
 {
 	parent = _parent;
 	if(parent)
 		parent->childs.push_back(this);
+
 	name = _name;
 }
 

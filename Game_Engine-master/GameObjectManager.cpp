@@ -4,6 +4,7 @@
 
 GameObjectManager::GameObjectManager(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
+	root = nullptr;
 }
 
 GameObjectManager::~GameObjectManager()
@@ -11,8 +12,6 @@ GameObjectManager::~GameObjectManager()
 
 bool GameObjectManager::Start()
 {
-	root = nullptr;
-
 	return true;
 }
 
@@ -35,9 +34,12 @@ bool GameObjectManager::CleanUp()
 
 GameObject* GameObjectManager::CreateGameObject(std::string name, GameObject* parent = nullptr)
 { 
+	if (parent == nullptr)
+		parent = root;
+
 	GameObject* object = new GameObject(name, parent);
 
-	if (!root && parent == nullptr)
+	if (root == nullptr)
 		root = object;
 
 	return object;
