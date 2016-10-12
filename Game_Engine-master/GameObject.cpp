@@ -1,6 +1,7 @@
 #include "GameObject.h"
 #include "Component.h"
 #include "ComponentMesh.h"
+#include "ComponentTransform.h"
 #include "GameObjectManager.h"
 
 GameObject::GameObject(std::string _name, GameObject* _parent)
@@ -52,18 +53,12 @@ Component* GameObject::AddComponent(component_type type, Mesh_str* _mesh)
 	return nullptr;
 }
 
-Component* GameObject::AddComponent(component_type type, int i)
+Component* GameObject::AddComponent(component_type type, float3 pos, float3 scale, Quat rot)
 {
-	//if (_mesh)
-	//{
-	//	ComponentMesh* mesh = new ComponentMesh();
-	//	components.push_back(mesh);
-	//
-	//	return mesh;
-	//}
-	//
-	//If never happens to get to this line, something went wrong!
-	return nullptr;
+	ComponentTransform* transform = new ComponentTransform(type, pos, scale, rot);
+	components.push_back(transform);
+	
+	return transform;
 }
 
 Component* GameObject::AddComponent(component_type type, float y)

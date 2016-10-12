@@ -13,9 +13,7 @@ public:
 	ComponentMesh(component_type type, Mesh_str* _mesh);
 	~ComponentMesh();
 
-	void Enable();
 	void Update();
-	void Disable();
 };
 
 #endif //__COMPONENTMESH_H__

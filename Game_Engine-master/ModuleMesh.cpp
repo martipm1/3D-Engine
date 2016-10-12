@@ -52,22 +52,22 @@ vector<Mesh_str> ModuleMesh::LoadMesh(const char* path)
 		//USE NODES TO ITERATE ALL THE SCENE
 		//if(scene->mRootNode->)
 		GameObject* object = App->go_manager->CreateGameObject("GameObject", nullptr);
-		//
-		////Getting the transformation
-		//aiVector3D translation;
-		//aiVector3D scaling;
-		//aiQuaternion rotation;
-		//
-		//scene->mRootNode->mTransformation.Decompose(scaling, rotation, translation);
-		//
-		//float3 pos(translation.x, translation.y, translation.z);
-		//float3 scale(scaling.x, scaling.y, scaling.z);
-		//Quat rot(rotation.x, rotation.y, rotation.z, rotation.w);
-		//
-		////Send everything to the GameObject
-		//object->AddComponent(c_transform, pos, scale, rot);
+		
+		//Getting the transformation
+		aiVector3D translation;
+		aiVector3D scaling;
+		aiQuaternion rotation;
+		
+		scene->mRootNode->mTransformation.Decompose(scaling, rotation, translation);
+		
+		float3 pos(translation.x, translation.y, translation.z);
+		float3 scale(scaling.x, scaling.y, scaling.z);
+		Quat rot(rotation.x, rotation.y, rotation.z, rotation.w);
+		
+		//Send everything to the GameObject
+		object->AddComponent(c_transform, pos, scale, rot);
 
-		//Getting the mesh
+		//Getting the mesh, now it's only one
 		for (int i = 0; i < scene->mNumMeshes; i++)
 		{
 			aiMesh* mesh_to_load = scene->mMeshes[i];
@@ -105,9 +105,9 @@ vector<Mesh_str> ModuleMesh::LoadMesh(const char* path)
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * mesh->num_indices, mesh->indices, GL_STATIC_DRAW);
 
+			//Mesh complete! Send it to GameObject as a Mesh Component
 			object->AddComponent(c_mesh, mesh);
 		}
-		//Mesh complete! Send it to GameObject as a Mesh Component
 
 		aiReleaseImport(scene);
 	}

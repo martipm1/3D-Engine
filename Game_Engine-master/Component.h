@@ -20,12 +20,18 @@ public:
 	Component(component_type _type, std::string _name) : type(_type), name(_name)
 	{}
 
-	virtual void Enable()
-	{}
 	virtual void Update()
 	{}
+	
+	void Enable()
+	{
+		active = true;
+	}
+
 	virtual void Disable()
-	{}
+	{
+		active = false;
+	}
 };
 
 #endif // !__COMPONENT_H__

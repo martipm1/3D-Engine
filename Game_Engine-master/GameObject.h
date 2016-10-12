@@ -2,6 +2,8 @@
 #define __GMAEOBJECT_H__
 
 #include "Globals.h"
+#include "MathGeoLib\Math\float3.h"
+#include "MathGeoLib\Math\Quat.h"
 #include <vector>
 class Component;
 class MeshComponent;
@@ -18,8 +20,8 @@ class GameObject
 		GameObject* GetParent();
 		//add Mesh component
 		Component* AddComponent(component_type type, Mesh_str* mesh);
-		//add Transform component, provisional
-		Component* AddComponent(component_type type, int i);
+		//add Transform component
+		Component* AddComponent(component_type type, float3 pos, float3 scale, Quat rot);
 		//add Material component, provisional
 		Component* AddComponent(component_type type, float y);
 		Component* FindComponent(component_type type);

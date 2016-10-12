@@ -213,6 +213,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="ComponentMesh.cpp" />
+    <ClCompile Include="ComponentTransform.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="glmath.cpp" />

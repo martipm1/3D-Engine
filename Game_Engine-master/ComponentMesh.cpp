@@ -23,12 +23,6 @@ ComponentMesh::~ComponentMesh()
 
 }
 
-void ComponentMesh::Enable()
-{
-	if (!active)
-		active = !active;
-}
-
 void ComponentMesh::Update()
 {
 	if (active)
@@ -40,10 +34,4 @@ void ComponentMesh::Update()
 		glDrawElements(GL_TRIANGLES, mesh->num_indices, GL_UNSIGNED_INT, NULL);
 		glDisableClientState(GL_VERTEX_ARRAY);
 	}
-}
-
-void ComponentMesh::Disable()
-{
-	if (active)
-		active = !active;
 }
