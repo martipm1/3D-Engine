@@ -1,8 +1,8 @@
 #ifndef __MODULE_MESH_H__
 #define __MODULE_MESH_H__
 
-#include "Module.h"
 #include "Globals.h"
+#include "Module.h"
 #include <vector>
 
 struct Mesh_str

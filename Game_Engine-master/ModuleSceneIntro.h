@@ -1,12 +1,8 @@
 #pragma once
-#include "Module.h"
-#include "p2DynArray.h"
 #include "Globals.h"
-#include "RNG.h"
+#include "Module.h"
 
 struct PhysBody3D;
-class Cube;
-struct Mesh_str;
 
 class ModuleSceneIntro : public Module
 {
@@ -19,6 +15,4 @@ public:
 	bool CleanUp();
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
-
-	uint my_id = 0;
 };

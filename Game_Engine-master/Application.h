@@ -27,8 +27,8 @@ public:
 	ModuleRenderer3D* renderer3D;
 	ModuleCamera3D* camera;
 	ModuleGuiEditor* editor;
-	GameObjectManager* go_manager;
 	ModuleMesh* meshes;
+	GameObjectManager* go_manager;
 
 private:
 

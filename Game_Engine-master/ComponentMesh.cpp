@@ -1,5 +1,6 @@
 #include "ComponentMesh.h"
 #include "ModuleMesh.h"
+#include "Component.h"
 //Geometry stuff, shouldn't be here ONLY TESTING!
 #include "Glew\include\glew.h"
 #include "SDL\include\SDL_opengl.h"

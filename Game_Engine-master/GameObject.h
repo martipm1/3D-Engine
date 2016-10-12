@@ -1,6 +1,7 @@
 #ifndef __GAMEOBJECT_H__
 #define __GMAEOBJECT_H__
 
+#include "Globals.h"
 #include <vector>
 class Component;
 class MeshComponent;
@@ -12,13 +13,14 @@ class GameObject
 	public:
 		GameObject(std::string _name, GameObject* _parent = nullptr);
 		~GameObject();
+
 		void Update();
 		GameObject* GetParent();
 		//add Mesh component
 		Component* AddComponent(component_type type, Mesh_str* mesh);
-		//add Transform component
+		//add Transform component, provisional
 		Component* AddComponent(component_type type, int i);
-		//add Material component
+		//add Material component, provisional
 		Component* AddComponent(component_type type, float y);
 		Component* FindComponent(component_type type);
 	

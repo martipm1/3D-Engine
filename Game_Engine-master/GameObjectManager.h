@@ -1,6 +1,7 @@
 #ifndef __GAMEOBJECTMANAGER_H__
 #define __GAMEOBJECTMANAGER_H__
 
+#include "Globals.h"
 #include "Module.h"
 class GameObject;
 

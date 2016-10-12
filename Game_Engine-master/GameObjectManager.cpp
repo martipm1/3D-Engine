@@ -18,8 +18,11 @@ bool GameObjectManager::Start()
 
 update_status GameObjectManager::Update(float dt)
 {
-	if (root->active)
-		root->Update();
+	if (root != nullptr)
+	{
+		if (root->active)
+			root->Update();
+	}
 
 	return UPDATE_CONTINUE;
 }

@@ -33,49 +33,49 @@ bool ModuleSceneIntro::Start()
 
 	GLenum gl_enum = glewInit();
 
-	static const GLfloat my_D_is_Tasty[] = {
-		-1.0f,-1.0f,-1.0f,
-		-1.0f,-1.0f, 1.0f,
-		-1.0f, 1.0f, 1.0f,
-		1.0f, 1.0f,-1.0f,
-		-1.0f,-1.0f,-1.0f,
-		-1.0f, 1.0f,-1.0f,
-		1.0f,-1.0f, 1.0f,
-		-1.0f,-1.0f,-1.0f,
-		1.0f,-1.0f,-1.0f,
-		1.0f, 1.0f,-1.0f,
-		1.0f,-1.0f,-1.0f,
-		-1.0f,-1.0f,-1.0f,
-		-1.0f,-1.0f,-1.0f,
-		-1.0f, 1.0f, 1.0f,
-		-1.0f, 1.0f,-1.0f,
-		1.0f,-1.0f, 1.0f,
-		-1.0f,-1.0f, 1.0f,
-		-1.0f,-1.0f,-1.0f,
-		-1.0f, 1.0f, 1.0f,
-		-1.0f,-1.0f, 1.0f,
-		1.0f,-1.0f, 1.0f,
-		1.0f, 1.0f, 1.0f,
-		1.0f,-1.0f,-1.0f,
-		1.0f, 1.0f,-1.0f,
-		1.0f,-1.0f,-1.0f,
-		1.0f, 1.0f, 1.0f,
-		1.0f,-1.0f, 1.0f,
-		1.0f, 1.0f, 1.0f,
-		1.0f, 1.0f,-1.0f,
-		-1.0f, 1.0f,-1.0f,
-		1.0f, 1.0f, 1.0f,
-		-1.0f, 1.0f,-1.0f,
-		-1.0f, 1.0f, 1.0f,
-		1.0f, 1.0f, 1.0f,
-		-1.0f, 1.0f, 1.0f,
-		1.0f,-1.0f, 1.0f
-	};
-
-
-	glGenBuffers(1, (GLuint*)&(my_id));
-	glBindBuffer(GL_ARRAY_BUFFER, my_id);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(my_D_is_Tasty) * 3, &my_D_is_Tasty, GL_STATIC_DRAW);
+	//static const GLfloat my_D_is_Tasty[] = {
+	//	-1.0f,-1.0f,-1.0f,
+	//	-1.0f,-1.0f, 1.0f,
+	//	-1.0f, 1.0f, 1.0f,
+	//	1.0f, 1.0f,-1.0f,
+	//	-1.0f,-1.0f,-1.0f,
+	//	-1.0f, 1.0f,-1.0f,
+	//	1.0f,-1.0f, 1.0f,
+	//	-1.0f,-1.0f,-1.0f,
+	//	1.0f,-1.0f,-1.0f,
+	//	1.0f, 1.0f,-1.0f,
+	//	1.0f,-1.0f,-1.0f,
+	//	-1.0f,-1.0f,-1.0f,
+	//	-1.0f,-1.0f,-1.0f,
+	//	-1.0f, 1.0f, 1.0f,
+	//	-1.0f, 1.0f,-1.0f,
+	//	1.0f,-1.0f, 1.0f,
+	//	-1.0f,-1.0f, 1.0f,
+	//	-1.0f,-1.0f,-1.0f,
+	//	-1.0f, 1.0f, 1.0f,
+	//	-1.0f,-1.0f, 1.0f,
+	//	1.0f,-1.0f, 1.0f,
+	//	1.0f, 1.0f, 1.0f,
+	//	1.0f,-1.0f,-1.0f,
+	//	1.0f, 1.0f,-1.0f,
+	//	1.0f,-1.0f,-1.0f,
+	//	1.0f, 1.0f, 1.0f,
+	//	1.0f,-1.0f, 1.0f,
+	//	1.0f, 1.0f, 1.0f,
+	//	1.0f, 1.0f,-1.0f,
+	//	-1.0f, 1.0f,-1.0f,
+	//	1.0f, 1.0f, 1.0f,
+	//	-1.0f, 1.0f,-1.0f,
+	//	-1.0f, 1.0f, 1.0f,
+	//	1.0f, 1.0f, 1.0f,
+	//	-1.0f, 1.0f, 1.0f,
+	//	1.0f,-1.0f, 1.0f
+	//};
+	//
+	//
+	//glGenBuffers(1, (GLuint*)&(my_id));
+	//glBindBuffer(GL_ARRAY_BUFFER, my_id);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(my_D_is_Tasty) * 3, &my_D_is_Tasty, GL_STATIC_DRAW);
 
 	App->meshes->LoadMesh("warrior.fbx");
 

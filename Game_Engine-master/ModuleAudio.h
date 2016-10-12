@@ -1,6 +1,7 @@
 #ifndef __ModuleAudio_H__
 #define __ModuleAudio_H__
 
+#include "Globals.h"
 #include "Module.h"
 #include "SDL_mixer\include\SDL_mixer.h"
 

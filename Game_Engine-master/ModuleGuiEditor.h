@@ -1,8 +1,8 @@
 #pragma once
 
+#include "Globals.h"
 #include "Module.h"
 #include "p2DynArray.h"
-#include "Globals.h"
 #include "p2List.h"
 
 class Menu;

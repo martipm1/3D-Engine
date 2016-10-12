@@ -1,6 +1,7 @@
 #ifndef __ModuleWindow_H__
 #define __ModuleWindow_H__
 
+#include "Globals.h"
 #include "Module.h"
 #include "SDL/include/SDL.h"
 
