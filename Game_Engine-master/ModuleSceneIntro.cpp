@@ -33,7 +33,9 @@ bool ModuleSceneIntro::Start()
 
 	GLenum gl_enum = glewInit();
 
-	App->meshes->LoadMesh("warrior.fbx");
+	//Town got geometry with indices != 3!
+	App->meshes->LoadMesh("Town/Street environment_V01.fbx");
+	//App->meshes->LoadMesh("warrior.fbx");
 
 	return ret;
 }

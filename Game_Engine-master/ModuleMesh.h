@@ -5,6 +5,10 @@
 #include "Module.h"
 #include <vector>
 
+class aiNode;
+class aiScene;
+class GameObject;
+
 struct Mesh_str
 {
 	uint id_vertices;
@@ -26,6 +30,7 @@ class ModuleMesh : public Module
 		bool CleanUp();
 
 		std::vector<Mesh_str> LoadMesh(const char* path);
+		void LoadCurrentNode(const aiScene* scene, aiNode* node, GameObject* parent, const char* path);
 };
 
 #endif __MODULE_MESH_H__

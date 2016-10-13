@@ -18,15 +18,15 @@ class GameObject
 
 		void Update();
 		GameObject* GetParent();
+		std::vector<GameObject*> GetChilds();
 		//add Mesh component
-		Component* AddComponent(component_type type, Mesh_str* mesh);
+		Component* AddComponent(component_type type, Mesh_str* mesh, GameObject* _parent);
 		//add Transform component
-		Component* AddComponent(component_type type, float3 pos, float3 scale, Quat rot);
+		Component* AddComponent(component_type type, float3 pos, float3 scale, Quat rot, GameObject* _parent);
 		//add Material component, provisional
-		Component* AddComponent(component_type type, float y);
+		//Component* AddComponent(component_type type, float y);
 		Component* FindComponent(component_type type);
 	
-	public:
 		GameObject* parent;
 		std::string name;
 		std::vector<Component*> components;

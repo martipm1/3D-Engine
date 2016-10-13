@@ -6,8 +6,10 @@
 
 GameObject::GameObject(std::string _name, GameObject* _parent)
 {
+	name.resize(30);
+
 	parent = _parent;
-	if(parent)
+	if(parent != nullptr)
 		parent->childs.push_back(this);
 
 	name = _name;
@@ -23,15 +25,20 @@ GameObject::~GameObject()
 
 void GameObject::Update()
 {
-	for (int i = 0; i < childs.size(); i++)
+	std::vector<GameObject*>::iterator tmp1 = childs.begin();
+
+	for (tmp1; tmp1 != childs.end(); tmp1++)
 	{
-		childs[i]->Update();
+		(*tmp1)->Update();
 	}
-	for (int i = 0; i < components.size(); i++)
+
+	std::vector<Component*>::iterator tmp2 = components.begin();
+	
+	for (tmp2; tmp2 != components.end(); tmp2++)
 	{
-		//watch out, cause it ain't declared! Gotta find a way to call pertinent update!
-		components[i]->Update();
+		(*tmp2)->Update();
 	}
+	
 }
 
 GameObject* GameObject::GetParent()
@@ -39,11 +46,16 @@ GameObject* GameObject::GetParent()
 	return parent;
 }
 
-Component* GameObject::AddComponent(component_type type, Mesh_str* _mesh)
+std::vector<GameObject*> GameObject::GetChilds()
+{
+	return childs;
+}
+
+Component* GameObject::AddComponent(component_type type, Mesh_str* _mesh, GameObject* _parent)
 {
 	if (_mesh)
 	{
-		ComponentMesh* mesh = new ComponentMesh(type, _mesh);
+		ComponentMesh* mesh = new ComponentMesh(type, _mesh, _parent);
 		components.push_back(mesh);
 
 		return mesh;
@@ -53,36 +65,38 @@ Component* GameObject::AddComponent(component_type type, Mesh_str* _mesh)
 	return nullptr;
 }
 
-Component* GameObject::AddComponent(component_type type, float3 pos, float3 scale, Quat rot)
+Component* GameObject::AddComponent(component_type type, float3 pos, float3 scale, Quat rot, GameObject* _parent)
 {
-	ComponentTransform* transform = new ComponentTransform(type, pos, scale, rot);
+	ComponentTransform* transform = new ComponentTransform(type, pos, scale, rot, _parent);
 	components.push_back(transform);
 	
 	return transform;
 }
 
-Component* GameObject::AddComponent(component_type type, float y)
-{
-	//if (_mesh)
-	//{
-	//	ComponentMesh* mesh = new ComponentMesh();
-	//	components.push_back(mesh);
-	//
-	//	return mesh;
-	//}
-	//
-	//If never happens to get to this line, something went wrong!
-	return nullptr;
-}
+//Component* GameObject::AddComponent(component_type type, float y)
+//{
+//	//if (_mesh)
+//	//{
+//	//	ComponentMesh* mesh = new ComponentMesh();
+//	//	components.push_back(mesh);
+//	//
+//	//	return mesh;
+//	//}
+//	//
+//	//If never happens to get to this line, something went wrong!
+//	return nullptr;
+//}
 
 Component* GameObject::FindComponent(component_type _type)
 {
-	for (int i = 0; i < components.size(); i++)
+	//This is messed up, somehow...
+	std::vector<Component*>::iterator tmp = components.begin();
+
+	for (tmp; tmp != components.end(); tmp++)
 	{
-		if (components[i]->type == _type)
-			return components[i];
+		if ((*tmp)->type == _type)
+			return (*tmp);
 	}
 
-	//If never happens to get to this line, something went wrong!
-	return nullptr;
+	return NULL;
 }

@@ -3,6 +3,8 @@
 
 #include <string>
 
+class GameObject;
+
 enum component_type
 {
 	c_transform,
@@ -16,8 +18,9 @@ public:
 	component_type type;
 	std::string name;
 	bool active;
+	GameObject* parent;
 
-	Component(component_type _type, std::string _name) : type(_type), name(_name)
+	Component(component_type _type, std::string _name, GameObject* _parent) : type(_type), name(_name), parent(_parent)
 	{}
 
 	virtual void Update()
