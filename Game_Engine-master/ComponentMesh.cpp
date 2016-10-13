@@ -18,6 +18,7 @@
 
 ComponentMesh::ComponentMesh(component_type type, Mesh_str* _mesh, GameObject* _parent) : Component(type, "Mesh", _parent)
 {
+	parent = _parent;
 	mesh = _mesh;
 	active = true;
 }
@@ -31,16 +32,22 @@ void ComponentMesh::Update()
 {
 	if (active)
 	{
-		GameObject* tmp = this->parent;
-		//ComponentTransform* trans = (ComponentTransform*)parent->FindComponent(c_transform);
-		//float4x4 matrix = trans->local_mat;
-		//glMultMatrixf(*matrix.v);
-		
+		ComponentTransform* trans = (ComponentTransform*)parent->FindComponent(c_transform);
+		if (trans)
+		{
+			float4x4 matrix = trans->local_mat.Transposed();
+			glPushMatrix();
+			glMultMatrixf(*matrix.v);
+		}
+			
 		//Draw the geometry (mesh) :^D
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
 		glVertexPointer(3, GL_FLOAT, 0, NULL);
 		glDrawElements(GL_TRIANGLES, mesh->num_indices, GL_UNSIGNED_INT, NULL);
 		glDisableClientState(GL_VERTEX_ARRAY);
+
+		if (trans)
+			glPopMatrix();
 	}
 }

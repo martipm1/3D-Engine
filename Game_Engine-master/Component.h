@@ -15,11 +15,6 @@ enum component_type
 class Component
 {
 public:
-	component_type type;
-	std::string name;
-	bool active;
-	GameObject* parent;
-
 	Component(component_type _type, std::string _name, GameObject* _parent) : type(_type), name(_name), parent(_parent)
 	{}
 
@@ -35,6 +30,11 @@ public:
 	{
 		active = false;
 	}
+
+	component_type type;
+	std::string name;
+	bool active;
+	GameObject* parent;
 };
 
 #endif // !__COMPONENT_H__

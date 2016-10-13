@@ -4,7 +4,7 @@
 
 GameObjectManager::GameObjectManager(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-	root = nullptr;
+	root = new GameObject("Root_node", nullptr);
 }
 
 GameObjectManager::~GameObjectManager()
@@ -38,9 +38,6 @@ GameObject* GameObjectManager::CreateGameObject(std::string name, GameObject* pa
 		parent = root;
 
 	GameObject* object = new GameObject(name, parent);
-
-	if (root == nullptr)
-		root = object;
 
 	return object;
 }
