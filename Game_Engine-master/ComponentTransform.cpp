@@ -19,21 +19,16 @@ void ComponentTransform::Update()
 
 }
 
-float4x4 ComponentTransform::GetMatrix()
+float4x4 ComponentTransform::GetRenderingMatrix()
 {
-	float4x4 mat;
+	float4x4 mat = local_mat;
 	
-	if (parent->parent)
+	if (parent->parent != nullptr)
 	{
-		ComponentTransform* trans = (ComponentTransform*)parent->FindComponent(c_transform);
-		if (trans)
-		{
-			mat = trans->local_mat;
-			mat = mat * local_mat;
-		}
+		ComponentTransform* trans = (ComponentTransform*)parent->parent->FindComponent(c_transform);
+		if(trans)
+			mat = trans->GetRenderingMatrix() * mat;
 	}
-	else
-		mat = local_mat;
 
 	return mat;
 }

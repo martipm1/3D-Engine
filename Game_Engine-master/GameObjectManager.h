@@ -16,10 +16,14 @@ public:
 	bool CleanUp();
 
 	//Should recieve specific data to create the object*
+	void DisplayGameObjectsWindow();
+	void DisplaySelectedGameObjectWindow();
 	GameObject* CreateGameObject(std::string name, GameObject* parent);
 	void DeleteGameObject(GameObject* object);
 
 	GameObject* root;
+
+	GameObject* focus_game_object;
 };
 
 #endif // !__GAMEOBJECTMANAGER_H__

@@ -15,7 +15,7 @@ public:
 	~ComponentTransform();
 
 	void Update();
-	float4x4 GetMatrix();
+	float4x4 GetRenderingMatrix();
 	
 	component_type type = c_transform;
 	float3 position;
