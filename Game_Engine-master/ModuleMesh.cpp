@@ -4,12 +4,19 @@
 #include "GameObjectManager.h"
 #include "Component.h"
 
+#include "Glew\include\glew.h"
+
 #include "Assimp\include\cimport.h"
 #include "Assimp\include\scene.h"
 #include "Assimp\include\postprocess.h"
 #include "Assimp\include\cfileio.h"
+#pragma comment (lib, "Assimp/libx86/assimp.lib")
 
-#include "Glew\include\glew.h"
+#include "Devil/include/il.h"
+#include "Devil/include/ilut.h"
+#pragma comment ( lib, "Devil/libx86/DevIL.lib" )
+#pragma comment ( lib, "Devil/libx86/ILU.lib" )
+#pragma comment ( lib, "Devil/libx86/ILUT.lib" )
 
 #pragma comment (lib, "Assimp/libx86/assimp.lib")
 #pragma comment (lib, "Glew/libx86/glew32.lib")
@@ -29,6 +36,13 @@ bool ModuleMesh::Init()
 	//struct aiLogStrem stream;
 	//stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullprt);
 	//aiAttachLogStream(&stream);
+
+	//Initialize DevIL
+	ilInit();
+	iluInit();
+	ilutInit();
+
+	ilutRenderer(ILUT_OPENGL);
 
 	return true;
 }
@@ -69,15 +83,21 @@ void ModuleMesh::LoadCurrentNode(const aiScene* scene, aiNode* node, GameObject*
 {
 	GameObject* g_object = nullptr;
 
-	//Getting the mesh, now it's only one
 	for (int i = 0; i < node->mNumMeshes; i++)
 	{
 		aiMesh* mesh_to_load = scene->mMeshes[node->mMeshes[i]];
 		Mesh_str* mesh = new Mesh_str();
+
 		//VERTICES
 		mesh->num_vertices = mesh_to_load->mNumVertices;
 		mesh->vertices = new uint[mesh->num_vertices * 3];
 		memcpy(mesh->vertices, mesh_to_load->mVertices, sizeof(float)*mesh->num_vertices * 3);
+
+		//Vertices buffer
+		glGenBuffers(1, (GLuint*)&(mesh->id_vertices));
+		glBindBuffer(GL_ARRAY_BUFFER, mesh->id_vertices);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * mesh->num_vertices, mesh->vertices, GL_STATIC_DRAW);
+
 		//INDICES
 		if (mesh_to_load->HasFaces())
 		{
@@ -94,16 +114,43 @@ void ModuleMesh::LoadCurrentNode(const aiScene* scene, aiNode* node, GameObject*
 					memcpy(&mesh->indices[j * 3], mesh_to_load->mFaces[j].mIndices, 3 * sizeof(uint));
 				}
 			}
+			//Indices buffer
+			glGenBuffers(1, (GLuint*)&(mesh->id_indices));
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * mesh->num_indices, mesh->indices, GL_STATIC_DRAW);
 		}
-		//Vertices buffer
-		glGenBuffers(1, (GLuint*)&(mesh->id_vertices));
-		glBindBuffer(GL_ARRAY_BUFFER, mesh->id_vertices);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * mesh->num_vertices, mesh->vertices, GL_STATIC_DRAW);
-		//Indices buffer
-		glGenBuffers(1, (GLuint*)&(mesh->id_indices));
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * mesh->num_indices, mesh->indices, GL_STATIC_DRAW);
 
+		//NORMALS
+		if (mesh_to_load->HasNormals())
+		{
+			mesh->num_normals = mesh_to_load->mNumVertices;
+			mesh->normals = new float[mesh->num_normals * 3];
+			memcpy(mesh->normals, mesh_to_load->mNormals, sizeof(float) * mesh->num_normals * 3);
+
+			//Normals buffer
+			glGenBuffers(1, (GLuint*)&(mesh->id_normals));
+			glBindBuffer(GL_ARRAY_BUFFER, mesh->id_normals);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * mesh->num_normals, mesh->normals, GL_STATIC_DRAW);
+		}
+
+		//UVS
+		if (mesh_to_load->HasTextureCoords(mesh->id_uvs))
+		{
+			mesh->num_uvs = mesh_to_load->mNumVertices;
+			mesh->uvs = new float[mesh->num_uvs * 2];
+			for (int i = 0; i < mesh_to_load->mNumVertices; ++i)
+			{
+				memcpy(&mesh->uvs[i * 2], &mesh_to_load->mTextureCoords[0][i].x, sizeof(float));
+				memcpy(&mesh->uvs[(i * 2) + 1], &mesh_to_load->mTextureCoords[0][i].y, sizeof(float));
+			}
+
+			//UVs buffer
+			glGenBuffers(1, (GLuint*)&(mesh->id_uvs));
+			glBindBuffer(GL_ARRAY_BUFFER, mesh->id_uvs);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 2 * mesh->num_uvs, mesh->uvs, GL_STATIC_DRAW);
+		}
+
+		//Transformation
 		if (mesh_to_load->HasPositions())
 		{
 			//Getting the transformation
@@ -123,10 +170,32 @@ void ModuleMesh::LoadCurrentNode(const aiScene* scene, aiNode* node, GameObject*
 
 		//Mesh complete! Send it to GameObject as a Mesh Component
 		g_object->AddComponent(c_mesh, mesh, g_object);
+
+		//if (scene->HasMaterials())
+		//{
+		//	aiMaterial* material = scene->mMaterials[mesh_to_load->mMaterialIndex];
+		//	aiString path;
+		//	material->GetTexture(aiTextureType_DIFFUSE, 0, &path);
+		//
+		//	if (path.length > 0)
+		//	{
+		//		g_object->AddComponent(c_material, LoadTexture(path_name), g_object);
+		//	}
+		//}
 	}
 
 	for (int i = 0; i < node->mNumChildren; i++)
 	{
 		LoadCurrentNode(scene, node->mChildren[i], g_object, path);
 	}
+}
+
+uint ModuleMesh::LoadTexture(const char* path)
+{
+	ILuint id;
+	ilGenImages(1, &id);
+	ilBindImage(id);
+	ilLoadImage(path);
+
+	return ilutGLBindTexImage();
 }

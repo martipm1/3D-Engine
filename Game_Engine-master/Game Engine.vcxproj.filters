@@ -46,6 +46,9 @@
     <Filter Include="Sources\Modules\GameObjects\Components">
       <UniqueIdentifier>{d71c4dab-ea45-4de3-94bd-f556d8523af7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\External\Devil">
+      <UniqueIdentifier>{db0586a2-2667-483a-bd56-36d1e7f1a97c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -450,6 +453,33 @@
     <ClInclude Include="ComponentMesh.h">
       <Filter>Sources\Modules\GameObjects\Components</Filter>
     </ClInclude>
+    <ClInclude Include="ComponentMaterial.h">
+      <Filter>Sources\Modules\GameObjects\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\config.h">
+      <Filter>Sources\External\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\devil_internal_exports.h">
+      <Filter>Sources\External\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\il.h">
+      <Filter>Sources\External\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\ilu.h">
+      <Filter>Sources\External\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\ilut.h">
+      <Filter>Sources\External\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\ilut_config.h">
+      <Filter>Sources\External\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\ilu_region.h">
+      <Filter>Sources\External\Devil</Filter>
+    </ClInclude>
+    <ClInclude Include="Devil\include\il_wrap.h">
+      <Filter>Sources\External\Devil</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -636,6 +666,9 @@
       <Filter>Sources\Modules\GameObjects\Components</Filter>
     </ClCompile>
     <ClCompile Include="ComponentTransform.cpp">
+      <Filter>Sources\Modules\GameObjects\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentMaterial.cpp">
       <Filter>Sources\Modules\GameObjects\Components</Filter>
     </ClCompile>
   </ItemGroup>

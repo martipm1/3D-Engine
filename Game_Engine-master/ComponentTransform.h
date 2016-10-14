@@ -17,7 +17,7 @@ public:
 	void Update();
 	float4x4 GetMatrix();
 	
-	component_type type;
+	component_type type = c_transform;
 	float3 position;
 	float3 scalation;
 	Quat rotation;

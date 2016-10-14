@@ -23,8 +23,8 @@ class GameObject
 		Component* AddComponent(component_type type, Mesh_str* mesh, GameObject* _parent);
 		//add Transform component
 		Component* AddComponent(component_type type, float3 pos, float3 scale, Quat rot, GameObject* _parent);
-		//add Material component, provisional
-		//Component* AddComponent(component_type type, float y);
+		//add Material component
+		Component* AddComponent(component_type type, size_t id, GameObject* _parent);
 		Component* FindComponent(component_type type);
 	
 		GameObject* parent;
