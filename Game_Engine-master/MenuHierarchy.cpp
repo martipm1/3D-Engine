@@ -89,7 +89,7 @@ void MenuHierarchy::DisplayFocusedGameObject()
 	}
 
 	//Name
-	ImGui::TextColored(ImVec4(255, 255, 0, 255), "NAME: %s", focused_game_object->name._Myptr());
+	ImGui::TextColored(ImVec4(255, 255, 255, 255), "NAME: %s", focused_game_object->name._Myptr());
 
 	//Components
 	const std::vector<Component*>* components = &focused_game_object->components;

@@ -26,8 +26,6 @@ update_status GameObjectManager::Update(float dt)
 			root->Update();
 	}
 
-	//DisplayGameObjectsWindow();
-
 	return UPDATE_CONTINUE;
 }
 
@@ -50,9 +48,4 @@ GameObject* GameObjectManager::CreateGameObject(std::string name, GameObject* pa
 void GameObjectManager::DeleteGameObject(GameObject* object)
 {
 	//object->Delete();
-}
-
-void GameObjectManager::DisplaySelectedGameObjectWindow()
-{
-
 }

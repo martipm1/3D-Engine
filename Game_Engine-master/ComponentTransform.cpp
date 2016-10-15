@@ -41,19 +41,19 @@ void ComponentTransform::OnProperties()
 	{
 		//May not be a good idea to let ComponentTransform be activated/deactivated!
 
-		ImGui::TextColored(ImVec4(255, 255, 0, 255), "Position:");
+		ImGui::TextColored(ImVec4(255, 255, 255, 255), "Position:");
 		if (ImGui::DragFloat3("Pos", position.ptr()))
 		{
 			SetPosition(position);
 		}
-		ImGui::TextColored(ImVec4(255, 255, 0, 255), "Scalation:");
+		ImGui::TextColored(ImVec4(255, 255, 255, 255), "Scalation:");
 		if (ImGui::DragFloat3("Scale", scalation.ptr()))
 		{
 			SetScale(scalation);
 		}
-		ImGui::TextColored(ImVec4(255, 255, 0, 255), "Rotation:");
+		ImGui::TextColored(ImVec4(255, 255, 255, 255), "Rotation:");
 		float3 euler_rot = rotation.ToEulerXYX();
-		if (ImGui::DragFloat3("##rot", euler_rot.ptr(), 1.0f, -360.0f, 360.0f))
+		if (ImGui::DragFloat3("Rotation", euler_rot.ptr(), 1.0f, -360.0f, 360.0f))
 		{
 			SetRotation(euler_rot);
 		}
