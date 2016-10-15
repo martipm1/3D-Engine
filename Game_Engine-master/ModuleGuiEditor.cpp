@@ -30,7 +30,7 @@ bool ModuleGuiEditor::Init()
 	// Menus
 	menus_list.add(about_menu = new MenuAbout());
 	menus_list.add(project_menu = new MenuProject());
-	menus_list.add(hierarchy_menu = new MenuHierarchy("Scene Hierarchy", App->go_manager->root));
+	menus_list.add(hierarchy_menu = new MenuHierarchy("Scene Hierarchy", nullptr));
 
 	return true;
 }
@@ -86,7 +86,7 @@ update_status ModuleGuiEditor::Update(float dt)
 				if (ImGui::BeginMenu("Objects"))
 				{
 					if (ImGui::MenuItem("Hierarchy"))
-						hierarchy_menu->SwitchActive();
+						hierarchy_menu->Activate(App->go_manager->root);
 
 					ImGui::EndMenu();
 				}				

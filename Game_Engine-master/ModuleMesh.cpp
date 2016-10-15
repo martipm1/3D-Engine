@@ -65,10 +65,13 @@ vector<Mesh_str> ModuleMesh::LoadMesh(const char* path)
 	{
 		aiNode* root_node = scene->mRootNode;
 
+		GameObject* g_object = App->go_manager->CreateGameObject(root_node->mName.C_Str(), nullptr);
+		App->go_manager->root = g_object;
+
 		//USE NODES TO ITERATE ALL THE SCENE
 		for (int i = 0; i < root_node->mNumChildren; i++)
 		{
-			LoadCurrentNode(scene, root_node, NULL, path);
+			LoadCurrentNode(scene, root_node, g_object, path);
 		}
 
 		aiReleaseImport(scene);

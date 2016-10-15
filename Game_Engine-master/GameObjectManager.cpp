@@ -6,7 +6,8 @@
 
 GameObjectManager::GameObjectManager(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
-	root = new GameObject("Root_node", nullptr);
+	//root = new GameObject("Root_node", nullptr);
+	root = nullptr;
 }
 
 GameObjectManager::~GameObjectManager()
@@ -49,47 +50,6 @@ GameObject* GameObjectManager::CreateGameObject(std::string name, GameObject* pa
 void GameObjectManager::DeleteGameObject(GameObject* object)
 {
 	//object->Delete();
-}
-
-void GameObjectManager::DisplayGameObjectsWindow()
-{
-	
-
-	//for (std::vector<GameObject*>::const_iterator object = root->childs.begin(); object != root->childs.end(); ++object)
-	//{
-	//	uint flags = 0;
-	//
-	//	if ((*object) == focus_game_object)
-	//		flags = ImGuiTreeNodeFlags_Selected;
-	//
-	//	if ((*object)->childs.size() > 0)
-	//	{
-	//		if (ImGui::TreeNodeEx((*object)->name.data(), flags))
-	//		{
-	//			if (ImGui::IsItemClicked(0))
-	//			{
-	//				focus_game_object = (*object);
-	//			}
-	//
-	//			//DisplayGameObjectsChilds((*object)->GetChilds());
-	//
-	//			ImGui::TreePop();
-	//		}
-	//	}
-	//	else
-	//	{
-	//		if (ImGui::TreeNodeEx((*object)->name.data(), flags | ImGuiTreeNodeFlags_Leaf))
-	//		{
-	//			if (ImGui::IsItemClicked(0))
-	//			{
-	//				focus_game_object = (*object);
-	//			}
-	//			ImGui::TreePop();
-	//		}
-	//	}
-	//}
-
-	ImGui::End();
 }
 
 void GameObjectManager::DisplaySelectedGameObjectWindow()

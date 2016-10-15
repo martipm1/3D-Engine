@@ -12,9 +12,13 @@ public:
 
 	const char* name;
 	GameObject* hierarchy_root;
+	GameObject* focused_game_object;
 	int pos;
 
 	void Render();
+	void DisplayChildNodes(GameObject* parent);
+	void DisplayFocusedGameObject();
+	void Activate(GameObject* _hierarchy_root);
 };
 
 #endif __MENUHIERARCHY_H__
