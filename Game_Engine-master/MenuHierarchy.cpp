@@ -79,7 +79,7 @@ void MenuHierarchy::DisplayChildNodes(GameObject* parent)
 
 void MenuHierarchy::DisplayFocusedGameObject()
 {
-	ImGui::Begin("GameObject Propertires", &active, ImVec2(300, 500), -1.0f, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
+	ImGui::Begin("GameObject Properties", &active, ImVec2(300, 500), -1.0f, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
 	//Active
 	bool active_state = focused_game_object->active;
 
@@ -89,7 +89,7 @@ void MenuHierarchy::DisplayFocusedGameObject()
 	}
 
 	//Name
-	ImGui::InputText("###goname", focused_game_object->name._Myptr(), focused_game_object->name.capacity());
+	ImGui::TextColored(ImVec4(255, 255, 0, 255), "NAME: %s", focused_game_object->name._Myptr());
 
 	//Components
 	const std::vector<Component*>* components = &focused_game_object->components;

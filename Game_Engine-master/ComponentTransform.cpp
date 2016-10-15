@@ -1,5 +1,7 @@
 #include "ComponentTransform.h"
 #include "GameObject.h"
+#include "Imgui\imgui.h"
+#include "MathGeoLib\MathGeoLib.h"
 
 ComponentTransform::ComponentTransform(component_type type, float3 pos, float3 scale, Quat rot, GameObject* _parent) : Component(type, "Transformation", _parent)
 {
@@ -31,4 +33,53 @@ float4x4 ComponentTransform::GetRenderingMatrix()
 	}
 
 	return mat;
+}
+
+void ComponentTransform::OnProperties()
+{
+	if (ImGui::CollapsingHeader("GameObject Transform"))
+	{
+		//May not be a good idea to let ComponentTransform be activated/deactivated!
+
+		ImGui::TextColored(ImVec4(255, 255, 0, 255), "Position:");
+		if (ImGui::DragFloat3("Pos", position.ptr()))
+		{
+			SetPosition(position);
+		}
+		ImGui::TextColored(ImVec4(255, 255, 0, 255), "Scalation:");
+		if (ImGui::DragFloat3("Scale", scalation.ptr()))
+		{
+			SetScale(scalation);
+		}
+		ImGui::TextColored(ImVec4(255, 255, 0, 255), "Rotation:");
+		float3 euler_rot = rotation.ToEulerXYX();
+		if (ImGui::DragFloat3("##rot", euler_rot.ptr(), 1.0f, -360.0f, 360.0f))
+		{
+			SetRotation(euler_rot);
+		}
+
+	}
+}
+
+void ComponentTransform::SetPosition(float3 pos)
+{
+	position = pos;
+
+	local_mat = local_mat.FromTRS(position, rotation, scalation);
+}
+
+void ComponentTransform::SetScale(float3 scale)
+{
+	scalation = scale;
+
+	local_mat = local_mat.FromTRS(position, rotation, scalation);
+}
+
+void ComponentTransform::SetRotation(float3 rot)
+{
+	float3 rot_degrees = DegToRad(rot);
+
+	rotation = rotation.FromEulerXYZ(rot_degrees.z, rot_degrees.y, rot_degrees.x);
+		
+	local_mat = local_mat.FromTRS(position, rotation, scalation);
 }

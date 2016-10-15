@@ -16,6 +16,10 @@ public:
 
 	void Update();
 	float4x4 GetRenderingMatrix();
+	void OnProperties();
+	void SetPosition(float3 pos);
+	void SetScale(float3 scale);
+	void SetRotation(float3 rot);
 	
 	component_type type = c_transform;
 	float3 position;
