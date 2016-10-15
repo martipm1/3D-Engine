@@ -71,7 +71,7 @@ vector<Mesh_str> ModuleMesh::LoadMesh(const char* path)
 		//USE NODES TO ITERATE ALL THE SCENE
 		for (int i = 0; i < root_node->mNumChildren; i++)
 		{
-			LoadCurrentNode(scene, root_node, g_object, path);
+			LoadCurrentNode(scene, root_node->mChildren[i], g_object, path);
 		}
 
 		aiReleaseImport(scene);

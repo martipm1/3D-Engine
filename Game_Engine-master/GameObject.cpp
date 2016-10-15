@@ -26,20 +26,20 @@ GameObject::~GameObject()
 
 void GameObject::Update()
 {
-	std::vector<GameObject*>::iterator tmp1 = childs.begin();
-
-	for (tmp1; tmp1 != childs.end(); tmp1++)
+	if (active)
 	{
-		(*tmp1)->Update();
-	}
+		std::vector<GameObject*>::iterator tmp1 = childs.begin();
+		for (tmp1; tmp1 != childs.end(); tmp1++)
+		{
+			(*tmp1)->Update();
+		}
 
-	std::vector<Component*>::iterator tmp2 = components.begin();
-	
-	for (tmp2; tmp2 != components.end(); tmp2++)
-	{
-		(*tmp2)->Update();
-	}
-	
+		std::vector<Component*>::iterator tmp2 = components.begin();
+		for (tmp2; tmp2 != components.end(); tmp2++)
+		{
+			(*tmp2)->Update();
+		}
+	}	
 }
 
 GameObject* GameObject::GetParent()
@@ -50,6 +50,18 @@ GameObject* GameObject::GetParent()
 std::vector<GameObject*> GameObject::GetChilds()
 {
 	return childs;
+}
+
+void GameObject::SetActive(bool act)
+{
+	active = act;
+
+	std::vector<GameObject*>::iterator tmp = childs.begin();
+
+	for (tmp; tmp != childs.end(); tmp++)
+	{
+		(*tmp)->SetActive(act);
+	}
 }
 
 Component* GameObject::AddComponent(component_type type, Mesh_str* _mesh, GameObject* _parent)

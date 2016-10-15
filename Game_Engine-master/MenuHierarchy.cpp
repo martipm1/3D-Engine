@@ -1,6 +1,7 @@
 #include "MenuHierarchy.h"
 #include "GameObject.h"
 #include "Imgui/imgui.h"
+#include <vector>
 
 MenuHierarchy::MenuHierarchy(const char* _name, GameObject* _hierarchy_root)
 {
@@ -23,6 +24,7 @@ MenuHierarchy::~MenuHierarchy()
 
 void MenuHierarchy::Render()
 {
+	//Hierarchy
 	ImGui::Begin(name, &active,
 		ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_NoMove);
@@ -40,34 +42,33 @@ void MenuHierarchy::Render()
 
 void MenuHierarchy::DisplayChildNodes(GameObject* parent)
 {
-	for (std::vector<GameObject*>::const_iterator object = parent->childs.begin(); object != parent->childs.end(); ++object)
+	for (std::vector<GameObject*>::const_iterator child = parent->childs.begin(); child != parent->childs.end(); ++child)
 	{
 		uint flags = 0;
 
-		if ((*object) == focused_game_object)
+		if ((*child) == focused_game_object)
 			flags = ImGuiTreeNodeFlags_Selected;
 
-		if ((*object)->childs.size() > 0)
+		if ((*child)->childs.size() > 0)
 		{
-			if (ImGui::TreeNodeEx((*object)->name.data(), flags))
+			if (ImGui::TreeNodeEx((*child)->name.data(), flags))
 			{
 				if (ImGui::IsItemClicked(0))
 				{
-					focused_game_object = (*object);
+					focused_game_object = (*child);
 				}
-
-				DisplayChildNodes((*object));
-
+				DisplayChildNodes((*child));
+				
 				ImGui::TreePop();
 			}
 		}
 		else
 		{
-			if (ImGui::TreeNodeEx((*object)->name.data(), flags | ImGuiTreeNodeFlags_Leaf))
+			if (ImGui::TreeNodeEx((*child)->name.data(), flags | ImGuiTreeNodeFlags_Leaf))
 			{
 				if (ImGui::IsItemClicked(0))
 				{
-					focused_game_object = (*object);
+					focused_game_object = (*child);
 				}
 				ImGui::TreePop();
 			}
@@ -77,7 +78,26 @@ void MenuHierarchy::DisplayChildNodes(GameObject* parent)
 
 void MenuHierarchy::DisplayFocusedGameObject()
 {
+	ImGui::Begin("GameObject Propertires", &active, ImVec2(300, 500), -1.0f, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
+	//Active
+	bool active_state = focused_game_object->active;
 
+	if (ImGui::Checkbox("Active", &active_state))
+	{
+		focused_game_object->SetActive(active_state);
+	}
+
+	//Name
+	ImGui::InputText("###goname", focused_game_object->name._Myptr(), focused_game_object->name.capacity());
+
+	//Components
+	const std::vector<Component*>* components = &focused_game_object->components;
+	for (std::vector<Component*>::const_iterator component = (*components).begin(); component != (*components).end(); ++component)
+	{
+		//(*component)->OnInspector();
+	}
+
+	ImGui::End();
 }
 
 void MenuHierarchy::Activate(GameObject* _hierarchy_root)

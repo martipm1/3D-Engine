@@ -19,6 +19,7 @@ class GameObject
 		void Update();
 		GameObject* GetParent();
 		std::vector<GameObject*> GetChilds();
+		void SetActive(bool act);
 		//add Mesh component
 		Component* AddComponent(component_type type, Mesh_str* mesh, GameObject* _parent);
 		//add Transform component
