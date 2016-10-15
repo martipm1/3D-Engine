@@ -83,5 +83,10 @@ void ComponentMesh::OnProperties()
 		{
 			SetActive(active_state);
 		}
+
+		ImGui::TextColored(ImVec4(255, 255, 0, 255), "Number of vertices: %u", mesh->num_vertices);
+		ImGui::TextColored(ImVec4(255, 255, 0, 255), "Number of indices: %u", mesh->num_indices);
+		ImGui::TextColored(ImVec4(255, 255, 0, 255), "Number of normals: %u", mesh->num_normals);
+		ImGui::TextColored(ImVec4(255, 255, 0, 255), "Number of UVs: %u", mesh->num_uvs);
 	}
 }
