@@ -167,17 +167,24 @@ void ModuleMesh::LoadCurrentNode(const aiScene* scene, aiNode* node, GameObject*
 
 			g_object->AddComponent(c_mesh, mesh, g_object);
 
-			//if (scene->HasMaterials())
-			//{
-			//	aiMaterial* material = scene->mMaterials[mesh_to_load->mMaterialIndex];
-			//	aiString path;
-			//	material->GetTexture(aiTextureType_DIFFUSE, 0, &path);
-			//
-			//	if (path.length > 0)
-			//	{
-			//		g_object->AddComponent(c_material, LoadTexture(path_name), g_object);
-			//	}
-			//}
+			if (scene->HasMaterials())
+			{
+				aiMaterial* material = scene->mMaterials[mesh_to_load->mMaterialIndex];
+				aiString path;
+				uint numTextures = material->GetTextureCount(aiTextureType_DIFFUSE);
+				material->GetTexture(aiTextureType_DIFFUSE, 0, &path);
+			
+				if (path.length > 1)
+				{
+					//TODO: change this chapussaaaaaa!
+					std::string str1 = path.data;
+					str1.erase(0, 12);
+					std::string str2 = "Town/";
+					str2 += str1;
+
+					g_object->AddComponent(c_material, LoadTexture(str2.c_str()), g_object);
+				}
+			}
 		}
 	}
 
