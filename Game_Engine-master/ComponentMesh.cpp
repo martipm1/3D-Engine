@@ -4,6 +4,7 @@
 #include "ModuleMesh.h"
 #include "Component.h"
 #include "GameObject.h"
+#include "Imgui\imgui.h"
 //Geometry stuff, shouldn't be here ONLY TESTING!
 #include "Glew\include\glew.h"
 #include "SDL\include\SDL_opengl.h"
@@ -52,10 +53,13 @@ void ComponentMesh::Update()
 		glBindBuffer(GL_ARRAY_BUFFER, mesh->id_uvs);
 		glTexCoordPointer(2, GL_FLOAT, 0, NULL);
 
-		if (material)
+		if (material != nullptr)
 		{
-			glEnable(GL_TEXTURE_2D);
-			glBindTexture(GL_TEXTURE_2D, material->texture_id);
+			if (material->active == true)
+			{
+				glEnable(GL_TEXTURE_2D);
+				glBindTexture(GL_TEXTURE_2D, material->texture_id);
+			}
 		}
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
@@ -67,5 +71,17 @@ void ComponentMesh::Update()
 
 		if (trans)
 			glPopMatrix();
+	}
+}
+
+void ComponentMesh::OnProperties()
+{
+	if (ImGui::CollapsingHeader("GameObject Mesh"))
+	{
+		bool active_state = active;
+		if (ImGui::Checkbox("MeshIsActive", &active_state))
+		{
+			SetActive(active_state);
+		}
 	}
 }

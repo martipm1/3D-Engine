@@ -16,20 +16,20 @@ class Component
 {
 public:
 	Component(component_type _type, std::string _name, GameObject* _parent) : type(_type), name(_name), parent(_parent)
-	{}
-
-	virtual void Update()
-	{}
-	
-	void Enable()
 	{
 		active = true;
 	}
 
-	virtual void Disable()
+	virtual void Update()
+	{}
+	
+	void SetActive(bool act)
 	{
-		active = false;
+		active = act;
 	}
+
+	virtual void OnProperties()
+	{}
 
 	component_type type;
 	std::string name;

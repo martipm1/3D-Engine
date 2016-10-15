@@ -1,5 +1,6 @@
 #include "MenuHierarchy.h"
 #include "GameObject.h"
+#include "Component.h"
 #include "Imgui/imgui.h"
 #include <vector>
 
@@ -94,7 +95,7 @@ void MenuHierarchy::DisplayFocusedGameObject()
 	const std::vector<Component*>* components = &focused_game_object->components;
 	for (std::vector<Component*>::const_iterator component = (*components).begin(); component != (*components).end(); ++component)
 	{
-		//(*component)->OnInspector();
+		(*component)->OnProperties();
 	}
 
 	ImGui::End();

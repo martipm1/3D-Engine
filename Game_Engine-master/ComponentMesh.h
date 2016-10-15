@@ -16,6 +16,7 @@ public:
 	~ComponentMesh();
 
 	void Update();
+	void OnProperties();
 };
 
 #endif //__COMPONENTMESH_H__

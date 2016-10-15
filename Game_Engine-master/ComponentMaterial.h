@@ -12,6 +12,7 @@ public:
 	~ComponentMaterial();
 
 	void Update();
+	void OnProperties();
 	
 	size_t texture_id;
 };
