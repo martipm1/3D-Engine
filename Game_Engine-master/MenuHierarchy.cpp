@@ -80,6 +80,8 @@ void MenuHierarchy::DisplayChildNodes(GameObject* parent)
 
 void MenuHierarchy::DisplayFocusedGameObject()
 {
+	ImGui::SetNextWindowPos(ImVec2(980.f, 30.f), ImGuiSetCond_Always);
+
 	ImGui::Begin("GameObject Properties", &active, ImVec2(300, 500), -1.0f, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
 	//Active
 	bool active_state = focused_game_object->active;
