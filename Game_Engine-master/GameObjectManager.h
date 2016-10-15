@@ -19,7 +19,6 @@ public:
 	void DeleteGameObject(GameObject* object);
 
 	GameObject* root;
-	GameObject* focus_game_object;
 };
 
 #endif // !__GAMEOBJECTMANAGER_H__

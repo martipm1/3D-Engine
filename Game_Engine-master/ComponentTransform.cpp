@@ -17,8 +17,11 @@ ComponentTransform::~ComponentTransform()
 {}
 
 void ComponentTransform::Update()
-{
+{}
 
+void ComponentTransform::DeleteComponent()
+{
+	parent = nullptr;
 }
 
 float4x4 ComponentTransform::GetRenderingMatrix()

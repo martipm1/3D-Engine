@@ -17,6 +17,7 @@ class GameObject
 		~GameObject();
 
 		void Update();
+		void Delete();
 		GameObject* GetParent();
 		std::vector<GameObject*> GetChilds();
 		void SetActive(bool act);

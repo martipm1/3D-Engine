@@ -116,8 +116,6 @@ update_status ModuleGuiEditor::Update(float dt)
 		}
 	}
 
-
-
 	// Update FPS
 	if (project_menu->active)
 	{
@@ -126,7 +124,6 @@ update_status ModuleGuiEditor::Update(float dt)
 
 	// Draw menus
 	p2List_item<Menu*>* menu = menus_list.getFirst();
-
 	while (menu != NULL)
 	{
 		if (menu->data->GetActive() == true)
@@ -137,7 +134,6 @@ update_status ModuleGuiEditor::Update(float dt)
 		}
 		menu = menu->next;
 	}
-
 	ImGui::Render();
 
 	return ret;

@@ -19,6 +19,7 @@ public:
 	void DisplayChildNodes(GameObject* parent);
 	void DisplayFocusedGameObject();
 	void Activate(GameObject* _hierarchy_root);
+	void DeleteMenu();
 };
 
 #endif __MENUHIERARCHY_H__

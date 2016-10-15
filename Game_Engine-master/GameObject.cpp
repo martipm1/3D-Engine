@@ -17,12 +17,7 @@ GameObject::GameObject(std::string _name, GameObject* _parent)
 }
 
 GameObject::~GameObject()
-{
-	//delete parent;
-	//delete components;
-	//delete childs;
-	//delete name;
-}
+{}
 
 void GameObject::Update()
 {
@@ -40,6 +35,25 @@ void GameObject::Update()
 			(*tmp2)->Update();
 		}
 	}	
+}
+
+void GameObject::Delete()
+{
+	parent = nullptr;
+	
+	std::vector<GameObject*>::iterator tmp1 = childs.begin();
+	for (tmp1; tmp1 != childs.end(); tmp1++)
+	{
+		(*tmp1)->Delete();
+		(*tmp1) = nullptr;
+	}
+
+	std::vector<Component*>::iterator tmp2 = components.begin();
+	for (tmp2; tmp2 != components.end(); tmp2++)
+	{
+		(*tmp2)->DeleteComponent();
+		(*tmp2) = nullptr;
+	}
 }
 
 GameObject* GameObject::GetParent()

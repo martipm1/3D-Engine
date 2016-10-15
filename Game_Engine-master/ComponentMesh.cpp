@@ -74,6 +74,13 @@ void ComponentMesh::Update()
 	}
 }
 
+void ComponentMesh::DeleteComponent()
+{
+	parent = nullptr;
+	delete mesh;
+	mesh = nullptr;
+}
+
 void ComponentMesh::OnProperties()
 {
 	if (ImGui::CollapsingHeader("GameObject Mesh"))

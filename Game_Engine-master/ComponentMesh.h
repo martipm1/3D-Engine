@@ -16,6 +16,7 @@ public:
 	~ComponentMesh();
 
 	void Update();
+	void DeleteComponent();
 	void OnProperties();
 };
 

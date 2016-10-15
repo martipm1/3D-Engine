@@ -31,7 +31,10 @@ update_status GameObjectManager::Update(float dt)
 
 bool GameObjectManager::CleanUp()
 {
-	//delete[] root;
+	root->Delete();
+
+	root = nullptr;
+
 	return true;
 }
 
@@ -47,5 +50,5 @@ GameObject* GameObjectManager::CreateGameObject(std::string name, GameObject* pa
 
 void GameObjectManager::DeleteGameObject(GameObject* object)
 {
-	//object->Delete();
+	object->Delete();
 }

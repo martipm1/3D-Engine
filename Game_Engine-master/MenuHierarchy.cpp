@@ -21,6 +21,7 @@ MenuHierarchy::~MenuHierarchy()
 {
 	hierarchy_root = nullptr;
 	focused_game_object = nullptr;
+	delete name;
 }
 
 void MenuHierarchy::Render()
@@ -105,4 +106,11 @@ void MenuHierarchy::Activate(GameObject* _hierarchy_root)
 {
 	hierarchy_root = _hierarchy_root;
 	active = true;
+}
+
+void MenuHierarchy::DeleteMenu()
+{
+	delete name;
+	hierarchy_root = nullptr;	
+	focused_game_object = nullptr;
 }

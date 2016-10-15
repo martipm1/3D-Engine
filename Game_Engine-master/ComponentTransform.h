@@ -15,6 +15,7 @@ public:
 	~ComponentTransform();
 
 	void Update();
+	void DeleteComponent();
 	float4x4 GetRenderingMatrix();
 	void OnProperties();
 	void SetPosition(float3 pos);

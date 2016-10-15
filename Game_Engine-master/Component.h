@@ -22,6 +22,9 @@ public:
 
 	virtual void Update()
 	{}
+
+	virtual void DeleteComponent()
+	{}
 	
 	void SetActive(bool act)
 	{

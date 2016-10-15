@@ -15,6 +15,11 @@ void ComponentMaterial::Update()
 	return;
 }
 
+void ComponentMaterial::DeleteComponent()
+{
+	parent = nullptr;
+}
+
 void ComponentMaterial::OnProperties()
 {
 	if (ImGui::CollapsingHeader("GameObject Material"))
