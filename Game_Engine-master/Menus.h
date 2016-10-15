@@ -8,7 +8,8 @@ enum MenuTypes
 	Menu_Unknown,
 	Menu_Console,
 	Menu_About,
-	Menu_Project
+	Menu_Project,
+	Menu_Hierarchy
 };
 
 class Menu

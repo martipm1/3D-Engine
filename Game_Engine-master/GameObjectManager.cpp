@@ -53,41 +53,41 @@ void GameObjectManager::DeleteGameObject(GameObject* object)
 
 void GameObjectManager::DisplayGameObjectsWindow()
 {
-	ImGui::Begin("Scene Hierarchy");
+	
 
-	for (std::vector<GameObject*>::const_iterator object = root->childs.begin(); object != root->childs.end(); ++object)
-	{
-		uint flags = 0;
-
-		if ((*object) == focus_game_object)
-			flags = ImGuiTreeNodeFlags_Selected;
-
-		if ((*object)->childs.size() > 0)
-		{
-			if (ImGui::TreeNodeEx((*object)->name.data(), flags))
-			{
-				if (ImGui::IsItemClicked(0))
-				{
-					focus_game_object = (*object);
-				}
-
-				//DisplayGameObjectsChilds((*object)->GetChilds());
-
-				ImGui::TreePop();
-			}
-		}
-		else
-		{
-			if (ImGui::TreeNodeEx((*object)->name.data(), flags | ImGuiTreeNodeFlags_Leaf))
-			{
-				if (ImGui::IsItemClicked(0))
-				{
-					focus_game_object = (*object);
-				}
-				ImGui::TreePop();
-			}
-		}
-	}
+	//for (std::vector<GameObject*>::const_iterator object = root->childs.begin(); object != root->childs.end(); ++object)
+	//{
+	//	uint flags = 0;
+	//
+	//	if ((*object) == focus_game_object)
+	//		flags = ImGuiTreeNodeFlags_Selected;
+	//
+	//	if ((*object)->childs.size() > 0)
+	//	{
+	//		if (ImGui::TreeNodeEx((*object)->name.data(), flags))
+	//		{
+	//			if (ImGui::IsItemClicked(0))
+	//			{
+	//				focus_game_object = (*object);
+	//			}
+	//
+	//			//DisplayGameObjectsChilds((*object)->GetChilds());
+	//
+	//			ImGui::TreePop();
+	//		}
+	//	}
+	//	else
+	//	{
+	//		if (ImGui::TreeNodeEx((*object)->name.data(), flags | ImGuiTreeNodeFlags_Leaf))
+	//		{
+	//			if (ImGui::IsItemClicked(0))
+	//			{
+	//				focus_game_object = (*object);
+	//			}
+	//			ImGui::TreePop();
+	//		}
+	//	}
+	//}
 
 	ImGui::End();
 }

@@ -33,9 +33,9 @@ Application::Application()
 	AddModule(audio);
 		
 	// Scenes
+	AddModule(go_manager);
 	AddModule(scene_intro);
 	AddModule(editor);
-	AddModule(go_manager);
 	AddModule(meshes);
 	
 }

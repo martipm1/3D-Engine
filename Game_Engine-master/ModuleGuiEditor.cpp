@@ -5,6 +5,7 @@
 #include "Menus.h"
 #include "MenuAbout.h"
 #include "MenuProject.h"
+#include "MenuHierarchy.h"
 
 #include "Imgui\imgui_impl_sdl_gl3.h"
 #include "Imgui\imgui.h"
@@ -29,6 +30,7 @@ bool ModuleGuiEditor::Init()
 	// Menus
 	menus_list.add(about_menu = new MenuAbout());
 	menus_list.add(project_menu = new MenuProject());
+	menus_list.add(hierarchy_menu = new MenuHierarchy("Scene Hierarchy", App->go_manager->root));
 
 	return true;
 }
@@ -43,8 +45,9 @@ update_status ModuleGuiEditor::PreUpdate(float dt)
 update_status ModuleGuiEditor::Update(float dt)
 {
 	update_status ret = UPDATE_CONTINUE;
-	static bool show_test_window = true;
+	static bool show_test_window = false;
 	static bool show_menu = true;
+	static bool show_hierarchy = true;
 
 	if (show_test_window)
 	{
@@ -78,6 +81,17 @@ update_status ModuleGuiEditor::Update(float dt)
 				ImGui::EndMenu();
 			}
 
+			if (show_hierarchy)
+			{
+				if (ImGui::BeginMenu("Objects"))
+				{
+					if (ImGui::MenuItem("Hierarchy"))
+						hierarchy_menu->SwitchActive();
+
+					ImGui::EndMenu();
+				}				
+			}
+
 			if (ImGui::BeginMenu("Help"))
 			{
 				if (ImGui::MenuItem("About"))
@@ -101,6 +115,8 @@ update_status ModuleGuiEditor::Update(float dt)
 			ImGui::EndMainMenuBar();
 		}
 	}
+
+
 
 	// Update FPS
 	if (project_menu->active)

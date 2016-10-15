@@ -8,6 +8,7 @@
 class Menu;
 class MenuAbout;
 class MenuProject;
+class MenuHierarchy;
 
 class ModuleGuiEditor : public Module
 {
@@ -22,6 +23,7 @@ public:
 
 	MenuAbout* about_menu;
 	MenuProject* project_menu;
+	MenuHierarchy* hierarchy_menu;
 
 	void SetProjectMenuFps();
 

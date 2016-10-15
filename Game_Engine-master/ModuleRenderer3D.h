@@ -3,7 +3,7 @@
 #include "Module.h"
 #include "glmath.h"
 #include "Light.h"
-#include "MathGeoLib\Math\float4x4.h"
+//#include "MathGeoLib\Math\float4x4.h"
 
 #define MAX_LIGHTS 8
 
@@ -20,8 +20,8 @@ public:
 	bool CleanUp();
 
 	void OnResize(int width, int height);
-	void RenderMesh(Mesh_str* mesh, float4x4 matrix);
-	void RenderMesh(Mesh_str* mesh, float4x4 matrix, uint texture_id);
+	//void RenderMesh(Mesh_str* mesh, float4x4 matrix);
+	//void RenderMesh(Mesh_str* mesh, float4x4 matrix, uint texture_id);
 
 public:
 

@@ -128,6 +128,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GameObjectManager.h" />
     <ClInclude Include="glmath.h" />
+    <ClInclude Include="MenuHierarchy.h" />
     <ClInclude Include="ModuleMesh.h" />
     <ClInclude Include="PerfTimer.h" />
     <ClInclude Include="MathGeoLib\Algorithm\Random\LCG.h" />
@@ -227,6 +228,7 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GameObjectManager.cpp" />
     <ClCompile Include="glmath.cpp" />
+    <ClCompile Include="MenuHierarchy.cpp" />
     <ClCompile Include="ModuleMesh.cpp" />
     <ClCompile Include="PerfTimer.cpp" />
     <ClCompile Include="MathGeoLib\Algorithm\Random\LCG.cpp" />

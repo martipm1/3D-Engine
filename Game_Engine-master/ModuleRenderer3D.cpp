@@ -1,7 +1,6 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleRenderer3D.h"
-#include "ModuleMesh.h"
 //Geometry stuff, shouldn't be here ONLY TESTING!
 #include "Glew\include\glew.h"
 #include "SDL\include\SDL_opengl.h"
@@ -164,53 +163,53 @@ void ModuleRenderer3D::OnResize(int width, int height)
 	glLoadIdentity();
 }
 
-void ModuleRenderer3D::RenderMesh(Mesh_str* mesh, float4x4 matrix)
-{
-	glPushMatrix();
-	glMultMatrixf(*matrix.v);
-
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
-	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_vertices);
-	glVertexPointer(3, GL_FLOAT, 0, NULL);
-
-	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_uvs);
-	glTexCoordPointer(2, GL_FLOAT, 0, NULL);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
-	glDrawElements(GL_TRIANGLES, mesh->num_indices, GL_UNSIGNED_INT, NULL);
-
-	glDisable(GL_TEXTURE_2D);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glDisableClientState(GL_VERTEX_ARRAY);
-
-	glPopMatrix();
-}
-
-void ModuleRenderer3D::RenderMesh(Mesh_str* mesh, float4x4 matrix, uint texture_id)
-{
-	glPushMatrix();
-	glMultMatrixf(*matrix.v);
-
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-
-	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_vertices);
-	glVertexPointer(3, GL_FLOAT, 0, NULL);
-
-	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_uvs);
-	glTexCoordPointer(2, GL_FLOAT, 0, NULL);
-
-	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, texture_id);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
-	glDrawElements(GL_TRIANGLES, mesh->num_indices, GL_UNSIGNED_INT, NULL);
-
-	glDisable(GL_TEXTURE_2D);
-	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-	glDisableClientState(GL_VERTEX_ARRAY);
-
-	glPopMatrix();
-}
+//void ModuleRenderer3D::RenderMesh(Mesh_str* mesh, float4x4 matrix)
+//{
+//	glPushMatrix();
+//	glMultMatrixf(*matrix.v);
+//
+//	glEnableClientState(GL_VERTEX_ARRAY);
+//	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+//
+//	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_vertices);
+//	glVertexPointer(3, GL_FLOAT, 0, NULL);
+//
+//	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_uvs);
+//	glTexCoordPointer(2, GL_FLOAT, 0, NULL);
+//
+//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
+//	glDrawElements(GL_TRIANGLES, mesh->num_indices, GL_UNSIGNED_INT, NULL);
+//
+//	glDisable(GL_TEXTURE_2D);
+//	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+//	glDisableClientState(GL_VERTEX_ARRAY);
+//
+//	glPopMatrix();
+//}
+//
+//void ModuleRenderer3D::RenderMesh(Mesh_str* mesh, float4x4 matrix, uint texture_id)
+//{
+//	glPushMatrix();
+//	glMultMatrixf(*matrix.v);
+//
+//	glEnableClientState(GL_VERTEX_ARRAY);
+//	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+//
+//	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_vertices);
+//	glVertexPointer(3, GL_FLOAT, 0, NULL);
+//
+//	glBindBuffer(GL_ARRAY_BUFFER, mesh->id_uvs);
+//	glTexCoordPointer(2, GL_FLOAT, 0, NULL);
+//
+//	glEnable(GL_TEXTURE_2D);
+//	glBindTexture(GL_TEXTURE_2D, texture_id);
+//
+//	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
+//	glDrawElements(GL_TRIANGLES, mesh->num_indices, GL_UNSIGNED_INT, NULL);
+//
+//	glDisable(GL_TEXTURE_2D);
+//	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+//	glDisableClientState(GL_VERTEX_ARRAY);
+//
+//	glPopMatrix();
+//}

@@ -480,6 +480,9 @@
     <ClInclude Include="Devil\include\il_wrap.h">
       <Filter>Sources\External\Devil</Filter>
     </ClInclude>
+    <ClInclude Include="MenuHierarchy.h">
+      <Filter>Sources\Menus</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -670,6 +673,9 @@
     </ClCompile>
     <ClCompile Include="ComponentMaterial.cpp">
       <Filter>Sources\Modules\GameObjects\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuHierarchy.cpp">
+      <Filter>Sources\Menus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
