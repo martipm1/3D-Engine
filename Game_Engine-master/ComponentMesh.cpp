@@ -18,7 +18,7 @@
 
 #include "MathGeoLib\Math\float4x4.h"
 
-ComponentMesh::ComponentMesh(component_type type, Mesh_str* _mesh, GameObject* _parent) : Component(type, "Mesh", _parent)
+ComponentMesh::ComponentMesh(component_type type, Mesh_str _mesh, GameObject* _parent) : Component(type, "Mesh", _parent)
 {
 	parent = _parent;
 	mesh = _mesh;
@@ -26,9 +26,7 @@ ComponentMesh::ComponentMesh(component_type type, Mesh_str* _mesh, GameObject* _
 }
 
 ComponentMesh::~ComponentMesh()
-{
-	mesh = nullptr;
-}
+{}
 
 void ComponentMesh::Update()
 {
@@ -47,10 +45,10 @@ void ComponentMesh::Update()
 		glEnableClientState(GL_VERTEX_ARRAY);
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-		glBindBuffer(GL_ARRAY_BUFFER, mesh->id_vertices);
+		glBindBuffer(GL_ARRAY_BUFFER, mesh.id_vertices);
 		glVertexPointer(3, GL_FLOAT, 0, NULL);
 
-		glBindBuffer(GL_ARRAY_BUFFER, mesh->id_uvs);
+		glBindBuffer(GL_ARRAY_BUFFER, mesh.id_uvs);
 		glTexCoordPointer(2, GL_FLOAT, 0, NULL);
 
 		if (material != nullptr)
@@ -62,8 +60,8 @@ void ComponentMesh::Update()
 			}
 		}
 
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
-		glDrawElements(GL_TRIANGLES, mesh->num_indices, GL_UNSIGNED_INT, NULL);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_indices);
+		glDrawElements(GL_TRIANGLES, mesh.num_indices, GL_UNSIGNED_INT, NULL);
 
 		glDisable(GL_TEXTURE_2D);
 		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -77,8 +75,6 @@ void ComponentMesh::Update()
 void ComponentMesh::DeleteComponent()
 {
 	parent = nullptr;
-	delete mesh;
-	mesh = nullptr;
 }
 
 void ComponentMesh::OnProperties()
@@ -91,9 +87,9 @@ void ComponentMesh::OnProperties()
 			SetActive(active_state);
 		}
 
-		ImGui::TextColored(ImVec4(255, 255, 255, 255), "Number of vertices: %u", mesh->num_vertices);
-		ImGui::TextColored(ImVec4(255, 255, 255, 255), "Number of indices: %u", mesh->num_indices);
-		ImGui::TextColored(ImVec4(255, 255, 255, 255), "Number of normals: %u", mesh->num_normals);
-		ImGui::TextColored(ImVec4(255, 255, 255, 255), "Number of UVs: %u", mesh->num_uvs);
+		ImGui::TextColored(ImVec4(255, 255, 255, 255), "Number of vertices: %u", mesh.num_vertices);
+		ImGui::TextColored(ImVec4(255, 255, 255, 255), "Number of indices: %u", mesh.num_indices);
+		ImGui::TextColored(ImVec4(255, 255, 255, 255), "Number of normals: %u", mesh.num_normals);
+		ImGui::TextColored(ImVec4(255, 255, 255, 255), "Number of UVs: %u", mesh.num_uvs);
 	}
 }

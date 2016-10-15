@@ -91,23 +91,23 @@ void ModuleMesh::LoadCurrentNode(const aiScene* scene, aiNode* node, GameObject*
 		for (int i = 0; i < node->mNumMeshes; i++)
 		{
 			aiMesh* mesh_to_load = scene->mMeshes[node->mMeshes[i]];
-			Mesh_str* mesh = new Mesh_str();
+			Mesh_str mesh = Mesh_str();
 
 			//VERTICES
-			mesh->num_vertices = mesh_to_load->mNumVertices;
-			mesh->vertices = new uint[mesh->num_vertices * 3];
-			memcpy(mesh->vertices, mesh_to_load->mVertices, sizeof(float)*mesh->num_vertices * 3);
+			mesh.num_vertices = mesh_to_load->mNumVertices;
+			mesh.vertices = new uint[mesh.num_vertices * 3];
+			memcpy(mesh.vertices, mesh_to_load->mVertices, sizeof(float)*mesh.num_vertices * 3);
 
 			//Vertices buffer
-			glGenBuffers(1, (GLuint*)&(mesh->id_vertices));
-			glBindBuffer(GL_ARRAY_BUFFER, mesh->id_vertices);
-			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * mesh->num_vertices, mesh->vertices, GL_STATIC_DRAW);
+			glGenBuffers(1, (GLuint*)&(mesh.id_vertices));
+			glBindBuffer(GL_ARRAY_BUFFER, mesh.id_vertices);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * mesh.num_vertices, mesh.vertices, GL_STATIC_DRAW);
 
 			//INDICES
 			if (mesh_to_load->HasFaces())
 			{
-				mesh->num_indices = mesh_to_load->mNumFaces * 3;
-				mesh->indices = new uint[mesh->num_indices];
+				mesh.num_indices = mesh_to_load->mNumFaces * 3;
+				mesh.indices = new uint[mesh.num_indices];
 				for (uint j = 0; j < mesh_to_load->mNumFaces; j++)
 				{
 					if (mesh_to_load->mFaces[j].mNumIndices != 3)
@@ -116,43 +116,43 @@ void ModuleMesh::LoadCurrentNode(const aiScene* scene, aiNode* node, GameObject*
 					}
 					else
 					{
-						memcpy(&mesh->indices[j * 3], mesh_to_load->mFaces[j].mIndices, 3 * sizeof(uint));
+						memcpy(&mesh.indices[j * 3], mesh_to_load->mFaces[j].mIndices, 3 * sizeof(uint));
 					}
 				}
 				//Indices buffer
-				glGenBuffers(1, (GLuint*)&(mesh->id_indices));
-				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->id_indices);
-				glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * mesh->num_indices, mesh->indices, GL_STATIC_DRAW);
+				glGenBuffers(1, (GLuint*)&(mesh.id_indices));
+				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.id_indices);
+				glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * mesh.num_indices, mesh.indices, GL_STATIC_DRAW);
 			}
 
 			//NORMALS
 			if (mesh_to_load->HasNormals())
 			{
-				mesh->num_normals = mesh_to_load->mNumVertices;
-				mesh->normals = new float[mesh->num_normals * 3];
-				memcpy(mesh->normals, mesh_to_load->mNormals, sizeof(float) * mesh->num_normals * 3);
+				mesh.num_normals = mesh_to_load->mNumVertices;
+				mesh.normals = new float[mesh.num_normals * 3];
+				memcpy(mesh.normals, mesh_to_load->mNormals, sizeof(float) * mesh.num_normals * 3);
 
 				//Normals buffer
-				glGenBuffers(1, (GLuint*)&(mesh->id_normals));
-				glBindBuffer(GL_ARRAY_BUFFER, mesh->id_normals);
-				glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * mesh->num_normals, mesh->normals, GL_STATIC_DRAW);
+				glGenBuffers(1, (GLuint*)&(mesh.id_normals));
+				glBindBuffer(GL_ARRAY_BUFFER, mesh.id_normals);
+				glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 3 * mesh.num_normals, mesh.normals, GL_STATIC_DRAW);
 			}
 
 			//UVS
-			if (mesh_to_load->HasTextureCoords(mesh->id_uvs))
+			if (mesh_to_load->HasTextureCoords(mesh.id_uvs))
 			{
-				mesh->num_uvs = mesh_to_load->mNumVertices;
-				mesh->uvs = new float[mesh->num_uvs * 2];
+				mesh.num_uvs = mesh_to_load->mNumVertices;
+				mesh.uvs = new float[mesh.num_uvs * 2];
 				for (int i = 0; i < mesh_to_load->mNumVertices; ++i)
 				{
-					memcpy(&mesh->uvs[i * 2], &mesh_to_load->mTextureCoords[0][i].x, sizeof(float));
-					memcpy(&mesh->uvs[(i * 2) + 1], &mesh_to_load->mTextureCoords[0][i].y, sizeof(float));
+					memcpy(&mesh.uvs[i * 2], &mesh_to_load->mTextureCoords[0][i].x, sizeof(float));
+					memcpy(&mesh.uvs[(i * 2) + 1], &mesh_to_load->mTextureCoords[0][i].y, sizeof(float));
 				}
 
 				//UVs buffer
-				glGenBuffers(1, (GLuint*)&(mesh->id_uvs));
-				glBindBuffer(GL_ARRAY_BUFFER, mesh->id_uvs);
-				glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 2 * mesh->num_uvs, mesh->uvs, GL_STATIC_DRAW);
+				glGenBuffers(1, (GLuint*)&(mesh.id_uvs));
+				glBindBuffer(GL_ARRAY_BUFFER, mesh.id_uvs);
+				glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 2 * mesh.num_uvs, mesh.uvs, GL_STATIC_DRAW);
 			}
 
 			//Transformation

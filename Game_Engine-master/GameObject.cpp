@@ -4,6 +4,7 @@
 #include "ComponentTransform.h"
 #include "ComponentMaterial.h"
 #include "GameObjectManager.h"
+#include "ModuleMesh.h"
 
 GameObject::GameObject(std::string _name, GameObject* _parent)
 {
@@ -78,18 +79,13 @@ void GameObject::SetActive(bool act)
 	}
 }
 
-Component* GameObject::AddComponent(component_type type, Mesh_str* _mesh, GameObject* _parent)
+Component* GameObject::AddComponent(component_type type, Mesh_str _mesh, GameObject* _parent)
 {
-	if (_mesh)
-	{
-		ComponentMesh* mesh = new ComponentMesh(type, _mesh, _parent);
-		components.push_back(mesh);
 
-		return mesh;
-	}
-
-	//If never happens to get to this line, something went wrong!
-	return nullptr;
+	ComponentMesh* mesh = new ComponentMesh(type, _mesh, _parent);
+	components.push_back(mesh);
+	
+	return mesh;
 }
 
 Component* GameObject::AddComponent(component_type type, float3 pos, float3 scale, Quat rot, GameObject* _parent)
