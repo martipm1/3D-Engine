@@ -4,6 +4,7 @@
 #include "Globals.h"
 #include "MathGeoLib\Math\float3.h"
 #include "MathGeoLib\Math\Quat.h"
+#include "MathGeoLib\Geometry\AABB.h"
 #include <vector>
 class Component;
 class MeshComponent;
@@ -33,6 +34,7 @@ class GameObject
 		std::string name;
 		std::vector<Component*> components;
 		std::vector<GameObject*> childs;
+		AABB bbox;
 		bool active;
 };
 
