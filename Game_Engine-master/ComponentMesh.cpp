@@ -79,7 +79,7 @@ void ComponentMesh::DeleteComponent()
 
 void ComponentMesh::OnProperties()
 {
-	if (ImGui::CollapsingHeader("GameObject Mesh"))
+	if (ImGui::CollapsingHeader("GameObject Mesh", ImGuiTreeNodeFlags_DefaultOpen))
 	{
 		bool active_state = active;
 		if (ImGui::Checkbox("MeshIsActive", &active_state))

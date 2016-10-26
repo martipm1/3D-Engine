@@ -22,7 +22,7 @@ void ComponentMaterial::DeleteComponent()
 
 void ComponentMaterial::OnProperties()
 {
-	if (ImGui::CollapsingHeader("GameObject Material"))
+	if (ImGui::CollapsingHeader("GameObject Material", ImGuiTreeNodeFlags_DefaultOpen))
 	{
 		bool active_state = active;
 		if (ImGui::Checkbox("MaterialIsActive", &active_state))

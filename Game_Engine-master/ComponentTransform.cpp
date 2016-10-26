@@ -40,7 +40,7 @@ float4x4 ComponentTransform::GetRenderingMatrix()
 
 void ComponentTransform::OnProperties()
 {
-	if (ImGui::CollapsingHeader("GameObject Transform"))
+	if (ImGui::CollapsingHeader("GameObject Transform", ImGuiTreeNodeFlags_DefaultOpen))
 	{
 		//May not be a good idea to let ComponentTransform be activated/deactivated!
 
