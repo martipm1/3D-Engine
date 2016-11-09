@@ -483,6 +483,9 @@
     <ClInclude Include="MenuHierarchy.h">
       <Filter>Sources\Menus</Filter>
     </ClInclude>
+    <ClInclude Include="ComponentCamera.h">
+      <Filter>Sources\Modules\GameObjects\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
@@ -676,6 +679,9 @@
     </ClCompile>
     <ClCompile Include="MenuHierarchy.cpp">
       <Filter>Sources\Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="ComponentCamera.cpp">
+      <Filter>Sources\Modules\GameObjects\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

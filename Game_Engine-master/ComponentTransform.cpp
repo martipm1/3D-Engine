@@ -82,7 +82,7 @@ void ComponentTransform::SetRotation(float3 rot)
 {
 	float3 rot_degrees = DegToRad(rot);
 
-	rotation = rotation.FromEulerXYZ(rot_degrees.z, rot_degrees.y, rot_degrees.x);
+	rotation = rotation.FromEulerXYZ(rot_degrees.x, rot_degrees.y, rot_degrees.z);
 		
 	local_mat = local_mat.FromTRS(position, rotation, scalation);
 }
